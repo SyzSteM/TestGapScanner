@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
-public class JacocoTest {
+class JacocoTest {
   @Test
   void test1() {
     try (InputStream inputStream = getClass().getResourceAsStream("/jacoco.xml")) {

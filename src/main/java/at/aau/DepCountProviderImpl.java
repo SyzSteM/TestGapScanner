@@ -1,8 +1,8 @@
 package at.aau;
 
-import java.util.List;
 import jakarta.inject.Named;
 import jakarta.inject.Singleton;
+import java.util.List;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
