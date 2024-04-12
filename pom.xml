@@ -35,7 +35,6 @@
   </properties>
 
   <dependencies>
-    <!--  plugin  -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
@@ -56,8 +55,6 @@
       <artifactId>jakarta.inject-api</artifactId>
       <version>2.0.1</version>
     </dependency>
-
-    <!--  XML  -->
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
@@ -68,12 +65,15 @@
       <artifactId>jaxb-runtime</artifactId>
       <version>4.0.5</version>
     </dependency>
-
-    <!--  commons  -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.16.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>18.0.0</version>
     </dependency>
 
     <!--  testing  -->

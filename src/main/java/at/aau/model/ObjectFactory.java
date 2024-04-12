@@ -77,11 +77,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Sessioninfo }
+     * Create an instance of {@link SessionInfo }
      * 
      */
-    public Sessioninfo createSessioninfo() {
-        return new Sessioninfo();
+    public SessionInfo createSessioninfo() {
+        return new SessionInfo();
     }
 
     /**
