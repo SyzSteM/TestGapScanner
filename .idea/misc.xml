@@ -4,6 +4,7 @@
     <writeAnnotations>
       <writeAnnotation name="jakarta.xml.bind.annotation.XmlAttribute" />
       <writeAnnotation name="jakarta.xml.bind.annotation.XmlElement" />
+      <writeAnnotation name="org.apache.maven.plugins.annotations.Parameter" />
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
