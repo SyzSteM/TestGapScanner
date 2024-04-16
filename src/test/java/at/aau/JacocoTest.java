@@ -1,7 +1,7 @@
 package at.aau;
 
-import at.aau.model.Class;
-import at.aau.model.Report;
+import at.aau.jacoco.model.Class;
+import at.aau.jacoco.model.Report;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Unmarshaller;
 import java.io.InputStream;

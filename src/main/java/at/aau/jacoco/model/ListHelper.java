@@ -1,4 +1,4 @@
-package at.aau.model;
+package at.aau.jacoco.model;
 
 import java.util.Collections;
 import java.util.List;

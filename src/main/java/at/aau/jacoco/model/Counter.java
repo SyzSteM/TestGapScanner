@@ -1,4 +1,4 @@
-package at.aau.model;
+package at.aau.jacoco.model;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

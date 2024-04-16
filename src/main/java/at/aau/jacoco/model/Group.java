@@ -1,4 +1,4 @@
-package at.aau.model;
+package at.aau.jacoco.model;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -10,15 +10,12 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "report")
-public class Report {
+@XmlRootElement(name = "group")
+public class Group {
 
   @XmlAttribute(name = "name", required = true)
   @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
   private String name;
-
-  @XmlElement(name = "sessioninfo")
-  private List<SessionInfo> sessionInfo;
 
   @XmlElement(name = "group")
   private List<Group> groups;
@@ -31,10 +28,6 @@ public class Report {
 
   public String getName() {
     return name;
-  }
-
-  public List<SessionInfo> getSessionInfo() {
-    return ListHelper.unmodifiableList(sessionInfo);
   }
 
   public List<Group> getGroups() {

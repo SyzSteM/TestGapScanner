@@ -1,4 +1,4 @@
-package at.aau.model;
+package at.aau.jacoco.model;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -10,20 +10,18 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "method")
-public class Method {
+@XmlRootElement(name = "package")
+public class Package {
 
   @XmlAttribute(name = "name", required = true)
   @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
   private String name;
 
-  @XmlAttribute(name = "desc", required = true)
-  @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-  private String desc;
+  @XmlElement(name = "class")
+  private List<Class> classes;
 
-  @XmlAttribute(name = "line")
-  @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-  private String line;
+  @XmlElement(name = "sourcefile")
+  private List<Sourcefile> sourceFiles;
 
   @XmlElement(name = "counter")
   private List<Counter> counters;
@@ -32,12 +30,12 @@ public class Method {
     return name;
   }
 
-  public String getDesc() {
-    return desc;
+  public List<Class> getClasses() {
+    return ListHelper.unmodifiableList(classes);
   }
 
-  public String getLine() {
-    return line;
+  public List<Sourcefile> getSourceFiles() {
+    return ListHelper.unmodifiableList(sourceFiles);
   }
 
   public List<Counter> getCounters() {

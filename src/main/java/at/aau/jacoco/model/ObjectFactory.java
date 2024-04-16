@@ -6,7 +6,7 @@
 // Generated on: 2024.04.12 at 03:57:27 PM CEST
 //
 
-package at.aau.model;
+package at.aau.jacoco.model;
 
 import jakarta.xml.bind.annotation.XmlRegistry;
 
