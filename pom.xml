@@ -4,15 +4,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>at.aau</groupId>
-  <artifactId>hello-maven-plugin</artifactId>
+  <artifactId>testgapscanner-maven-plugin</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <name>Hello Maven Plugin</name>
+  <name>TestGapScanner Maven Plugin</name>
   <description>
-    Hello Maven Plugin - Learning how to develop maven plugins!
+    TestGapScanner - What to test next? Risk-based selection of critical code
   </description>
-  <url>https://github.com/SyzSteM</url>
+  <url>https://github.com/SyzSteM/TestGapScanner</url>
   <inceptionYear>2024</inceptionYear>
 
   <developers>
@@ -30,101 +30,128 @@
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
-
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!--  provided  -->
+    <maven-core.version>3.9.6</maven-core.version>
+    <maven-plugin-annotations.version>3.12.0</maven-plugin-annotations.version>
+
+    <!--  compile  -->
+    <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
+    <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
+    <jaxb-runtime.version>4.0.5</jaxb-runtime.version>
+    <commons-io.version>2.16.1</commons-io.version>
+    <annotations.version>18.0.0</annotations.version>
+
+    <!--  test  -->
+    <junit-jupiter.version>5.10.2</junit-jupiter.version>
+
+    <!--  plugins  -->
+    <maven-plugin-plugin.version>3.12.0</maven-plugin-plugin.version>
+    <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+    <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+    <maven-jxr-plugin.version>3.3.2</maven-jxr-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
   </properties>
 
   <dependencies>
+    <!--  provided  -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.9.6</version>
+      <version>${maven-core.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>3.9.6</version>
+      <version>${maven-core.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.12.0</version>
+      <version>${maven-plugin-annotations.version}</version>
+      <scope>provided</scope>
     </dependency>
+
+    <!--  compile  -->
     <dependency>
       <groupId>jakarta.inject</groupId>
       <artifactId>jakarta.inject-api</artifactId>
-      <version>2.0.1</version>
+      <version>${jakarta.inject-api.version}</version>
     </dependency>
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>4.0.2</version>
+      <version>${jakarta.xml.bind-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
-      <version>4.0.5</version>
+      <version>${jaxb-runtime.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.16.1</version>
+      <version>${commons-io.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>18.0.0</version>
+      <version>${annotations.version}</version>
     </dependency>
 
-    <!--  testing  -->
+    <!--  test  -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.10.2</version>
+      <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-
     <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.12.0</version>
+          <version>${maven-plugin-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-report-plugin</artifactId>
-          <version>3.12.0</version>
+          <version>${maven-plugin-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.12.1</version>
+          <version>${maven-site-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.6.3</version>
+          <version>${maven-javadoc-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>${maven-jxr-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
       </plugin>
     </plugins>
-
   </build>
 
   <reporting>
