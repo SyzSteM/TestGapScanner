@@ -18,7 +18,12 @@ public class DependencyCounterMojo extends AbstractMojo {
   @Parameter(property = "scope")
   private String scope;
 
-  @Inject private DepCountProvider depCountProvider;
+  private final DepCountProvider depCountProvider;
+
+  @Inject
+  public DependencyCounterMojo(DepCountProvider depCountProvider) {
+    this.depCountProvider = depCountProvider;
+  }
 
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
