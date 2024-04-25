@@ -1,47 +1,18 @@
 package at.aau;
 
-import at.aau.jacoco.model.Class;
-import at.aau.jacoco.model.Report;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Unmarshaller;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertFalse;
 
-class JacocoTest {
+import at.aau.jacoco.JacocoMetricCollector;
+import at.aau.jacoco.JacocoMetricFilter;
+import java.nio.file.Path;
+import org.junit.Test;
+
+public class JacocoTest {
   @Test
-  void test1() {
-    try (InputStream inputStream = getClass().getResourceAsStream("/jacoco.xml")) {
-      String xml = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+  public void test2() throws Exception {
+    var metrics = JacocoMetricCollector.collect(Path.of("src/test/resources/jacoco/jacoco.xml"));
+    var untestedClasses = JacocoMetricFilter.getUntestedClasses(metrics);
 
-      JAXBContext jaxbContext = JAXBContext.newInstance(Report.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-      Report report = (Report) jaxbUnmarshaller.unmarshal(new StringReader(xml));
-
-      List<Class> classesWithUncoveredMethods =
-          report.getPackages().get(0).getClasses().stream()
-              .filter(
-                  clazz ->
-                      clazz.getMethods().stream()
-                          .allMatch(
-                              method ->
-                                  method.getCounters().stream()
-                                          .filter(
-                                              counter ->
-                                                  counter.getType().equalsIgnoreCase("METHOD"))
-                                          .findFirst()
-                                          .get()
-                                          .getCovered()
-                                      == 0))
-              .collect(Collectors.toList());
-
-      System.out.println();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    assertFalse(untestedClasses.isEmpty());
   }
 }

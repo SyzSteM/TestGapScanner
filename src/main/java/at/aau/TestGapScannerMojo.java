@@ -2,14 +2,12 @@ package at.aau;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.file.AccumulatorPathVisitor;
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -42,28 +40,20 @@ public class TestGapScannerMojo extends AbstractMojo {
 
     getLog().info("Coverage report found. Proceeding with additional checks...");
 
-    var output = Path.of(project.getBuild().getOutputDirectory());
+    Path outputDirPath = Paths.get(project.getBasedir().getPath());
+    getLog().info("");
+    AccumulatorPathVisitor visitor =
+        AccumulatorPathVisitor.withLongCounters(
+            FileFilterUtils.suffixFileFilter(".java"), FileFilterUtils.trueFileFilter());
 
     try {
-      var classFiles = new ArrayList<Path>();
-      Files.walkFileTree(
-          output,
-          new SimpleFileVisitor<>() {
-
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-              if (file.toString().endsWith(".class")) {
-                classFiles.add(file);
-              }
-              return FileVisitResult.CONTINUE;
-            }
-          });
-
-      for (Path classFile : classFiles) {
-        getLog().info("Processing " + classFile);
-      }
+      Files.walkFileTree(outputDirPath, visitor);
     } catch (IOException e) {
-      throw new MojoExecutionException("Failed to access class files");
+      throw new MojoFailureException("Failed to walk output directory " + outputDirPath, e);
+    }
+
+    for (Path classFile : visitor.getFileList()) {
+      getLog().info("Processing " + classFile);
     }
 
     try {

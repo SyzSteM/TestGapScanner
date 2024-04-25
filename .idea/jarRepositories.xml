@@ -16,5 +16,10 @@
       <option name="name" value="Central Repository" />
       <option name="url" value="http://nexus.plincs.com/repository/maven-public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://nexus.plincs.com/repository/maven-public/" />
+    </remote-repository>
   </component>
 </project>
