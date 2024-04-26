@@ -1,16 +1,17 @@
 package at.aau.jacoco;
 
-import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.nio.file.Path;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class JacocoCoverageCollectorTest {
+class JacocoCoverageCollectorTest {
   @Test
-  public void test2() throws Exception {
-    var metrics = JacocoCoverageCollector.collect(Path.of("src/test/resources/jacoco/jacoco.xml"));
+  void shouldReturnUntestedClasses_whenPathIsValid() throws Exception {
+    var jacocoReportPath = Path.of("src", "test", "resources", "jacoco", "jacoco.xml");
+    var metrics = JacocoCoverageCollector.collect(jacocoReportPath);
     var untestedClasses = JacocoCoverageFilter.getUntestedClasses(metrics);
 
-    assertFalse(untestedClasses.isEmpty());
+    assertThat(untestedClasses).isNotEmpty();
   }
 }
