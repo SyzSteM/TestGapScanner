@@ -1,4 +1,4 @@
-package at.aau;
+package at.aau.mojo;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

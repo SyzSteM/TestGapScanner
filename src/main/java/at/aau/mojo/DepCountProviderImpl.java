@@ -1,13 +1,11 @@
-package at.aau;
+package at.aau.mojo;
 
-import jakarta.inject.Named;
-import jakarta.inject.Singleton;
 import java.util.List;
+import javax.inject.Singleton;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 
-@Named
 @Singleton
 public class DepCountProviderImpl implements DepCountProvider {
   @Override

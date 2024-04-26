@@ -1,6 +1,6 @@
-package at.aau;
+package at.aau.mojo;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -12,13 +12,13 @@ import org.apache.maven.project.MavenProject;
 @Mojo(name = "dependency-counter", defaultPhase = LifecyclePhase.COMPILE)
 public class DependencyCounterMojo extends AbstractMojo {
 
+  private final DepCountProvider depCountProvider;
+
   @Parameter(defaultValue = "${project}", required = true, readonly = true)
   private MavenProject project;
 
   @Parameter(property = "scope")
   private String scope;
-
-  private final DepCountProvider depCountProvider;
 
   @Inject
   public DependencyCounterMojo(DepCountProvider depCountProvider) {

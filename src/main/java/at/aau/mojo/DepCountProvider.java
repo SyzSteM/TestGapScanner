@@ -1,4 +1,4 @@
-package at.aau;
+package at.aau.mojo;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
