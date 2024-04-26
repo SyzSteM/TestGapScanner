@@ -9,6 +9,8 @@ import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
+import at.aau.util.ListHelper;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "method")
 public class Method {

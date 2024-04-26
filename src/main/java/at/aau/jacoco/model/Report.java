@@ -1,5 +1,6 @@
 package at.aau.jacoco.model;
 
+import at.aau.util.ListHelper;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;

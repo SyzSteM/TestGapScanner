@@ -2,7 +2,7 @@ package at.aau.jacoco;
 
 import at.aau.jacoco.model.Class;
 import at.aau.jacoco.model.Package;
-import at.aau.jacoco.util.ListHelper;
+import at.aau.util.ListHelper;
 import java.util.List;
 import java.util.stream.Collectors;
 
