@@ -7,7 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AggregatingCkNotifier implements CKNotifier {
+class AggregatingCkNotifier implements CKNotifier {
   private static final Logger LOGGER = LoggerFactory.getLogger(AggregatingCkNotifier.class);
 
   private final List<CKClassResult> ckResults = new ArrayList<>();

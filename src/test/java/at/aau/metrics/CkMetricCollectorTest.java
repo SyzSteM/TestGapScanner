@@ -11,13 +11,11 @@ class CkMetricCollectorTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(CkMetricCollectorTest.class);
 
   @Test
-  void shouldReturnCkMetrics_whenPathIsValid() {
+  void shouldReturnClassMetrics_whenPathIsValid() {
     var classPath = Paths.get("src", "test", "projects", "test-project", "src", "main");
-    var metrics = CkMetricCollector.collect(classPath);
+    var metrics = CkMetricCollector.collectMetrics(classPath);
 
-    for (var entry : metrics) {
-      LOGGER.info("{}", entry);
-    }
+    metrics.forEach(metric -> LOGGER.info("{}", metric));
 
     assertThat(metrics).isNotEmpty();
   }
