@@ -15,8 +15,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-public final class JacocoMetricCollector {
-  private JacocoMetricCollector() {
+public final class JacocoCoverageCollector {
+  private JacocoCoverageCollector() {
     throw new UnsupportedOperationException("Utility class");
   }
 
