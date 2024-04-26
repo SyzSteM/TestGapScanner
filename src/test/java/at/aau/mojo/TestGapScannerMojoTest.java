@@ -1,4 +1,4 @@
-package at.aau;
+package at.aau.mojo;
 
 import static io.takari.maven.testing.AbstractTestMavenRuntime.newParameter;
 import static io.takari.maven.testing.AbstractTestResources.assertFilesPresent;

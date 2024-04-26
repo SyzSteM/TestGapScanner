@@ -11,7 +11,7 @@ public final class ListHelper {
     throw new UnsupportedOperationException("Utility class");
   }
 
-  public static boolean listNotNullOrEmpty(List<?> list) {
+  public static boolean notNullOrEmpty(List<?> list) {
     return Optional.ofNullable(list).filter(Predicate.not(List::isEmpty)).isPresent();
   }
   public static <T> List<T> unmodifiableList(@Nullable List<T> list) {
