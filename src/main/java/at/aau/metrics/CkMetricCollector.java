@@ -3,7 +3,6 @@ package at.aau.metrics;
 import at.aau.model.ClassMetrics;
 import at.aau.model.MetricMeasurement;
 import at.aau.util.PathHelper;
-
 import com.github.mauricioaniche.ck.CK;
 import com.github.mauricioaniche.ck.CKClassResult;
 import java.nio.file.Path;
@@ -42,7 +41,7 @@ public final class CkMetricCollector {
   }
 
   private static List<CKClassResult> getCkMetrics(Path path) {
-    var ckNotifier = new AggregatingCkNotifier();
+    AggregatingCkNotifier ckNotifier = new AggregatingCkNotifier();
 
     new CK().calculate(path, ckNotifier);
 
