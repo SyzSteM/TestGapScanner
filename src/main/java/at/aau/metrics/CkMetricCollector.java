@@ -37,7 +37,7 @@ public final class CkMetricCollector {
       classMetrics.add(ClassMetrics.of(className, metricMeasurements, null));
     }
 
-    return classMetrics;
+    return List.copyOf(classMetrics);
   }
 
   private static List<CKClassResult> getCkMetrics(Path path) {

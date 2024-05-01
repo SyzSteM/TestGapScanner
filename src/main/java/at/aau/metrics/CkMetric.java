@@ -1,12 +1,11 @@
 package at.aau.metrics;
 
 import com.github.mauricioaniche.ck.CKClassResult;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class CkMetric {
   public static final List<CkMetric> CK_CLASS_METRICS = new ArrayList<>();
@@ -42,33 +41,25 @@ public class CkMetric {
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(17, 37)
-        .append(getName())
-        .append(getDescription())
-        .append(getter)
-        .toHashCode();
+    return Objects.hashCode(getName(), getDescription(), getter);
   }
 
   @Override
   public boolean equals(Object obj) {
     if (this == obj) return true;
-
-    if (obj == null || getClass() != obj.getClass()) return false;
-
+    if (!(obj instanceof CkMetric)) return false;
     CkMetric ckMetric = (CkMetric) obj;
-
-    return new EqualsBuilder()
-        .append(getName(), ckMetric.getName())
-        .append(getDescription(), ckMetric.getDescription())
-        .append(getter, ckMetric.getter)
-        .isEquals();
+    return Objects.equal(getName(), ckMetric.getName())
+        && Objects.equal(getDescription(), ckMetric.getDescription())
+        && Objects.equal(getter, ckMetric.getter);
   }
 
   @Override
   public String toString() {
-    return new ToStringBuilder(this)
-        .append("name", name)
-        .append("description", description)
+    return MoreObjects.toStringHelper(this)
+        .add("name", name)
+        .add("description", description)
+        .add("getter", getter)
         .toString();
   }
 
