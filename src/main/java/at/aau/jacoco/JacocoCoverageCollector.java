@@ -25,7 +25,7 @@ public final class JacocoCoverageCollector {
     Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
     SAXSource saxSource = getXmlSourceWithoutDtd(jacocoReportPath);
 
-    var report = (Report) unmarshaller.unmarshal(saxSource);
+    Report report = (Report) unmarshaller.unmarshal(saxSource);
 
     return report.getPackages();
   }

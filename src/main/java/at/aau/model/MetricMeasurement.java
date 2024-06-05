@@ -5,14 +5,14 @@ import com.google.common.base.Objects;
 
 public final class MetricMeasurement {
   private final String metricName;
-  private final int value;
+  private final double value;
 
-  private MetricMeasurement(String metricName, int value) {
+  private MetricMeasurement(String metricName, double value) {
     this.metricName = metricName;
     this.value = value;
   }
 
-  public static MetricMeasurement of(String metricName, int value) {
+  public static MetricMeasurement of(String metricName, double value) {
     return new MetricMeasurement(metricName, value);
   }
 
@@ -20,7 +20,7 @@ public final class MetricMeasurement {
     return metricName;
   }
 
-  public int getValue() {
+  public double getValue() {
     return value;
   }
 

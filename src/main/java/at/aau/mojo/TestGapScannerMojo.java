@@ -1,17 +1,19 @@
 package at.aau.mojo;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import at.aau.jacoco.JacocoCoverageCollector;
+import at.aau.jacoco.JacocoCoverageFilter;
+import at.aau.jacoco.model.Class;
+import at.aau.jacoco.model.Package;
+import at.aau.metrics.CkMetricCollector;
+import at.aau.metrics.MetricUtils;
+import at.aau.metrics.RiskMetricCalculator;
+import at.aau.model.ClassMetrics;
+import at.aau.model.ClassWithRisk;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.file.AccumulatorPathVisitor;
-import org.apache.commons.io.filefilter.FileFilterUtils;
+import java.util.List;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
@@ -28,9 +30,16 @@ public class TestGapScannerMojo extends AbstractMojo {
   @Parameter(defaultValue = "${session}", readonly = true, required = true)
   private MavenSession session;
 
+  private static List<Class> getUntestedClasses(Path coverageReport) throws Exception {
+    List<Package> metrics = JacocoCoverageCollector.collect(coverageReport);
+
+    return JacocoCoverageFilter.getUntestedClasses(metrics);
+  }
+
   @Override
-  public void execute() throws MojoExecutionException, MojoFailureException {
-    Path coverageReport = Paths.get(coverageReportPath);
+  public void execute() {
+    Path projectBaseDirPath = project.getBasedir().toPath();
+    Path coverageReport = Path.of(coverageReportPath);
 
     if (Files.notExists(coverageReport)) {
       getLog().warn("Coverage report not found at " + coverageReport);
@@ -38,29 +47,33 @@ public class TestGapScannerMojo extends AbstractMojo {
       return;
     }
 
-    getLog().info("Coverage report found. Proceeding with additional checks...");
+    getLog().info("Valid coverage report found, processing...");
 
-    Path outputDirPath = Paths.get(project.getBasedir().getPath());
-    getLog().info("");
-    AccumulatorPathVisitor visitor =
-        AccumulatorPathVisitor.withLongCounters(
-            FileFilterUtils.suffixFileFilter(".java"), FileFilterUtils.trueFileFilter());
+    List<Class> untestedClasses;
 
     try {
-      Files.walkFileTree(outputDirPath, visitor);
-    } catch (IOException e) {
-      throw new MojoFailureException("Failed to walk output directory " + outputDirPath, e);
+      untestedClasses = getUntestedClasses(coverageReport);
+    } catch (Exception e) {
+      getLog().error("Failed to parse coverage report; abort", e);
+      return;
     }
 
-    for (Path classFile : visitor.getFileList()) {
-      getLog().info("Processing " + classFile);
-    }
+    getLog().info("Calculating risk scores for untested classes...");
 
-    try {
-      String reportContent =
-          FileUtils.readFileToString(coverageReport.toFile(), StandardCharsets.UTF_8);
-    } catch (IOException e) {
-      throw new MojoExecutionException("Error reading coverage report", e);
+    List<ClassMetrics> classMetrics = CkMetricCollector.collectMetrics(projectBaseDirPath);
+    List<ClassMetrics> untestedClassMetrics =
+        MetricUtils.filterUntestedClassMetrics(untestedClasses, classMetrics);
+
+    List<ClassWithRisk> descendingClassRiskScores =
+        RiskMetricCalculator.getDescendingClassRiskScores(untestedClassMetrics);
+
+    for (int i = 0; i < descendingClassRiskScores.size(); i++) {
+      ClassWithRisk matchingClass = descendingClassRiskScores.get(i);
+      String message =
+          String.format(
+              "%d. FQN: %s, Risk: %.2f",
+              i + 1, matchingClass.getClassName(), matchingClass.getRisk());
+      getLog().info(message);
     }
   }
 }
