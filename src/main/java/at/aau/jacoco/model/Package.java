@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
+import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "package")
@@ -41,5 +42,31 @@ public class Package {
 
   public List<Counter> getCounters() {
     return ListHelper.unmodifiableList(counters);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = Objects.hashCode(name);
+    result = 31 * result + Objects.hashCode(classes);
+    result = 31 * result + Objects.hashCode(sourceFiles);
+    result = 31 * result + Objects.hashCode(counters);
+    return result;
+  }
+
+  @Override
+  public final boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Package)) return false;
+
+    Package aPackage = (Package) o;
+    return Objects.equals(name, aPackage.name)
+        && Objects.equals(classes, aPackage.classes)
+        && Objects.equals(sourceFiles, aPackage.sourceFiles)
+        && Objects.equals(counters, aPackage.counters);
+  }
+
+  @Override
+  public String toString() {
+    return "Package{" + "name='" + name + '\'' + '}';
   }
 }

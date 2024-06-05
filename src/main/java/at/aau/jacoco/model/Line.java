@@ -43,4 +43,44 @@ public class Line {
   public long getCoveredBranchCount() {
     return coveredBranchCount;
   }
+
+  @Override
+  public int hashCode() {
+    int result = Long.hashCode(lineNumber);
+    result = 31 * result + Long.hashCode(missedInstructionCount);
+    result = 31 * result + Long.hashCode(coveredInstructionCount);
+    result = 31 * result + Long.hashCode(missedBranchCount);
+    result = 31 * result + Long.hashCode(coveredBranchCount);
+    return result;
+  }
+
+  @Override
+  public final boolean equals(Object o) {
+
+    if (this == o) return true;
+    if (!(o instanceof Line)) return false;
+
+    Line line = (Line) o;
+    return lineNumber == line.lineNumber
+        && missedInstructionCount == line.missedInstructionCount
+        && coveredInstructionCount == line.coveredInstructionCount
+        && missedBranchCount == line.missedBranchCount
+        && coveredBranchCount == line.coveredBranchCount;
+  }
+
+  @Override
+  public String toString() {
+    return "Line{"
+        + "lineNumber="
+        + lineNumber
+        + ", missedInstructionCount="
+        + missedInstructionCount
+        + ", coveredInstructionCount="
+        + coveredInstructionCount
+        + ", missedBranchCount="
+        + missedBranchCount
+        + ", coveredBranchCount="
+        + coveredBranchCount
+        + '}';
+  }
 }

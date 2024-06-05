@@ -25,7 +25,7 @@ public final class JacocoCoverageCollector {
     Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
     SAXSource saxSource = getXmlSourceWithoutDtd(jacocoReportPath);
 
-    Report report = (Report) unmarshaller.unmarshal(saxSource);
+    var report = (Report) unmarshaller.unmarshal(saxSource);
 
     return report.getPackages();
   }
@@ -40,6 +40,7 @@ public final class JacocoCoverageCollector {
   private static XMLReader getXmlReaderWithoutDtd()
       throws ParserConfigurationException, SAXException {
     SAXParserFactory spf = SAXParserFactory.newInstance();
+    
     spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
     return spf.newSAXParser().getXMLReader();
