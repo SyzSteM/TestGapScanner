@@ -1,6 +1,6 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListHelper;
+import at.aau.util.ListUtils;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -33,15 +33,15 @@ public class Package {
   }
 
   public List<Class> getClasses() {
-    return ListHelper.unmodifiableList(classes);
+    return ListUtils.unmodifiableList(classes);
   }
 
   public List<Sourcefile> getSourceFiles() {
-    return ListHelper.unmodifiableList(sourceFiles);
+    return ListUtils.unmodifiableList(sourceFiles);
   }
 
   public List<Counter> getCounters() {
-    return ListHelper.unmodifiableList(counters);
+    return ListUtils.unmodifiableList(counters);
   }
 
   @Override

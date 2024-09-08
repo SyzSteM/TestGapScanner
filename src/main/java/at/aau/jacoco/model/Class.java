@@ -1,6 +1,7 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListHelper;
+import at.aau.util.ListUtils;
+import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -38,11 +39,11 @@ public class Class {
   }
 
   public List<Method> getMethods() {
-    return ListHelper.unmodifiableList(methods);
+    return ListUtils.unmodifiableList(methods);
   }
 
   public List<Counter> getCounters() {
-    return ListHelper.unmodifiableList(counters);
+    return ListUtils.unmodifiableList(counters);
   }
 
   @Override
@@ -69,5 +70,31 @@ public class Class {
   @Override
   public String toString() {
     return "Class{" + "name='" + name + '\'' + ", sourceFilename='" + sourceFilename + '\'' + '}';
+  }
+
+  /**
+   * Callback method invoked by JAXB (Java Architecture for XML Binding) after unmarshalling an XML
+   * content tree into a Java object. This method is called after all the properties are
+   * unmarshalled, and it allows custom initialization or processing after the unmarshalling
+   * completes.
+   *
+   * <p>The method iterates over the list of {@link Method}s and sets their parent class reference
+   * to this class instance.
+   *
+   * @param unmarshaller the {@link Unmarshaller} that generated this callback; provides context for
+   *     the unmarshalling process
+   * @param parent the parent object in the object graph; can be {@code null} if this object is the
+   *     root
+   * @see Unmarshaller
+   * @see <a
+   *     href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/Unmarshaller.html#unmarshalEventCallback">
+   *     Unmarshaller unmarshalEventCallback Documentation</a>
+   */
+  void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+    if (methods != null) {
+      for (Method method : methods) {
+        method.setParentClass(this);
+      }
+    }
   }
 }

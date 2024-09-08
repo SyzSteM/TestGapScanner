@@ -1,6 +1,6 @@
 package at.aau.model;
 
-import at.aau.util.ListHelper;
+import at.aau.util.ListUtils;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import java.util.List;
@@ -15,8 +15,8 @@ public final class ClassMetrics {
       List<MetricMeasurement> classMetrics,
       List<MetricMeasurement> methodMetrics) {
     this.className = className;
-    this.classMetrics = ListHelper.unmodifiableList(classMetrics);
-    this.methodMetrics = ListHelper.unmodifiableList(methodMetrics);
+    this.classMetrics = ListUtils.unmodifiableList(classMetrics);
+    this.methodMetrics = ListUtils.unmodifiableList(methodMetrics);
   }
 
   public static ClassMetrics of(

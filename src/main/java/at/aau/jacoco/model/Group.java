@@ -1,6 +1,6 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListHelper;
+import at.aau.util.ListUtils;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -33,15 +33,15 @@ public class Group {
   }
 
   public List<Group> getGroups() {
-    return ListHelper.unmodifiableList(groups);
+    return ListUtils.unmodifiableList(groups);
   }
 
   public List<Package> getPackages() {
-    return ListHelper.unmodifiableList(packages);
+    return ListUtils.unmodifiableList(packages);
   }
 
   public List<Counter> getCounters() {
-    return ListHelper.unmodifiableList(counters);
+    return ListUtils.unmodifiableList(counters);
   }
 
   @Override

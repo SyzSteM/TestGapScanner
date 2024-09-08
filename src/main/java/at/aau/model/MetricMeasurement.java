@@ -1,23 +1,23 @@
 package at.aau.model;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import java.util.Objects;
 
 public final class MetricMeasurement {
-  private final String metricName;
+  private final MetricType type;
   private final double value;
 
-  private MetricMeasurement(String metricName, double value) {
-    this.metricName = metricName;
+  private MetricMeasurement(MetricType type, double value) {
+    this.type = type;
     this.value = value;
   }
 
-  public static MetricMeasurement of(String metricName, double value) {
-    return new MetricMeasurement(metricName, value);
+  public static MetricMeasurement of(MetricType type, double value) {
+    return new MetricMeasurement(type, value);
   }
 
-  public String getMetricName() {
-    return metricName;
+  public MetricType getType() {
+    return type;
   }
 
   public double getValue() {
@@ -26,22 +26,22 @@ public final class MetricMeasurement {
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(getMetricName(), getValue());
+    int result = Objects.hashCode(type);
+    result = 31 * result + Double.hashCode(value);
+    return result;
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-    MetricMeasurement that = (MetricMeasurement) obj;
-    return getValue() == that.getValue() && Objects.equal(getMetricName(), that.getMetricName());
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof MetricMeasurement)) return false;
+
+    MetricMeasurement that = (MetricMeasurement) o;
+    return Double.compare(value, that.value) == 0 && Objects.equals(type, that.type);
   }
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-        .add("metricName", metricName)
-        .add("value", value)
-        .toString();
+    return MoreObjects.toStringHelper(this).add("type", type).add("value", value).toString();
   }
 }

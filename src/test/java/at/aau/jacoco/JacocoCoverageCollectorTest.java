@@ -10,7 +10,7 @@ class JacocoCoverageCollectorTest {
   void shouldReturnUntestedClasses_whenPathIsValid() throws Exception {
     var jacocoReportPath = Path.of("src", "test", "resources", "jacoco", "jacoco.xml");
     var metrics = JacocoCoverageCollector.collect(jacocoReportPath);
-    var untestedClasses = JacocoCoverageFilter.getUntestedClasses(metrics);
+    var untestedClasses = JacocoCoverageFilter.getUntestedMethods(metrics);
 
     assertThat(untestedClasses).isNotEmpty();
   }

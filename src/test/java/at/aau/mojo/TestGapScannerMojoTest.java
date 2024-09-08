@@ -18,7 +18,7 @@ public class TestGapScannerMojoTest {
   public void test() throws Exception {
     File baseDir = resources.getBasedir("test-project");
 
-    maven.executeMojo(baseDir, "test-gap-scanner", newParameter("name", "Timo"));
+    maven.executeMojo(baseDir, "test-gap-scanner");
 
     assertFilesPresent(baseDir, "target/site/jacoco/jacoco.xml");
   }

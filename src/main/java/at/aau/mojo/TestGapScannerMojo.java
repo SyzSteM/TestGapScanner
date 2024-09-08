@@ -2,13 +2,13 @@ package at.aau.mojo;
 
 import at.aau.jacoco.JacocoCoverageCollector;
 import at.aau.jacoco.JacocoCoverageFilter;
-import at.aau.jacoco.model.Class;
+import at.aau.jacoco.model.Method;
 import at.aau.jacoco.model.Package;
 import at.aau.metrics.CkMetricCollector;
 import at.aau.metrics.MetricUtils;
 import at.aau.metrics.RiskMetricCalculator;
-import at.aau.model.ClassMetrics;
-import at.aau.model.ClassWithRisk;
+import at.aau.model.MethodWithRisk;
+import at.aau.model.MetricsData;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -30,10 +30,10 @@ public class TestGapScannerMojo extends AbstractMojo {
   @Parameter(defaultValue = "${session}", readonly = true, required = true)
   private MavenSession session;
 
-  private static List<Class> getUntestedClasses(Path coverageReport) throws Exception {
+  private static List<Method> getUntestedMethods(Path coverageReport) throws Exception {
     List<Package> metrics = JacocoCoverageCollector.collect(coverageReport);
 
-    return JacocoCoverageFilter.getUntestedClasses(metrics);
+    return JacocoCoverageFilter.getUntestedMethods(metrics);
   }
 
   @Override
@@ -49,10 +49,10 @@ public class TestGapScannerMojo extends AbstractMojo {
 
     getLog().info("Valid coverage report found, processing...");
 
-    List<Class> untestedClasses;
+    List<Method> uncoveredMethods;
 
     try {
-      untestedClasses = getUntestedClasses(coverageReport);
+      uncoveredMethods = getUntestedMethods(coverageReport);
     } catch (Exception e) {
       getLog().error("Failed to parse coverage report; abort", e);
       return;
@@ -60,20 +60,23 @@ public class TestGapScannerMojo extends AbstractMojo {
 
     getLog().info("Calculating risk scores for untested classes...");
 
-    List<ClassMetrics> classMetrics = CkMetricCollector.collectMetrics(projectBaseDirPath);
-    List<ClassMetrics> untestedClassMetrics =
-        MetricUtils.filterUntestedClassMetrics(untestedClasses, classMetrics);
+    List<MetricsData> methodMetricsData = CkMetricCollector.collectMetrics(projectBaseDirPath);
+    List<MetricsData> untestedMethodsMetricsData =
+        MetricUtils.getUntestedMethodMetrics(uncoveredMethods, methodMetricsData);
+    List<MetricsData> normalizedMetricsData =
+        RiskMetricCalculator.normalizeMetricsData(untestedMethodsMetricsData);
+    List<MethodWithRisk> descendingMethodRiskScores =
+        RiskMetricCalculator.getDescendingMethodRiskScores(normalizedMetricsData);
 
-    List<ClassWithRisk> descendingClassRiskScores =
-        RiskMetricCalculator.getDescendingClassRiskScores(untestedClassMetrics);
-
-    for (int i = 0; i < descendingClassRiskScores.size(); i++) {
-      ClassWithRisk matchingClass = descendingClassRiskScores.get(i);
+    for (int i = 0; i < descendingMethodRiskScores.size(); i++) {
+      MethodWithRisk matchingClass = descendingMethodRiskScores.get(i);
       String message =
           String.format(
               "%d. FQN: %s, Risk: %.2f",
-              i + 1, matchingClass.getClassName(), matchingClass.getRisk());
-      getLog().info(message);
+              i + 1, matchingClass.getMethodDescriptor(), matchingClass.getRisk());
+      getLog().info(String.format("%d:", i + 1));
+      getLog().info(String.format("  FQN: %s", matchingClass.getMethodDescriptor()));
+      getLog().info(String.format("  Risk: %.2f", matchingClass.getRisk()));
     }
   }
 }

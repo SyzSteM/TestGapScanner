@@ -1,8 +1,10 @@
 package at.aau.metrics;
 
-import at.aau.model.ClassMetrics;
-import at.aau.model.ClassWithRisk;
+import at.aau.model.MethodMetricType;
+import at.aau.model.MethodWithRisk;
 import at.aau.model.MetricMeasurement;
+import at.aau.model.MetricType;
+import at.aau.model.MetricsData;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
@@ -16,96 +18,100 @@ public final class RiskMetricCalculator {
     throw new UnsupportedOperationException("Utility class");
   }
 
-  public static List<ClassWithRisk> getDescendingClassRiskScores(List<ClassMetrics> classMetrics) {
-    return getNormalizedClassMetrics(classMetrics).stream()
+  public static List<MetricsData> normalizeMetricsData(List<MetricsData> metrics) {
+    Map<MetricType, DoubleSummaryStatistics> classMetricsSummary =
+        metrics.stream()
+            .flatMap(m -> m.getClassMetrics().stream())
+            .collect(
+                Collectors.groupingBy(
+                    MetricMeasurement::getType,
+                    Collectors.summarizingDouble(MetricMeasurement::getValue)));
+
+    Map<MetricType, DoubleSummaryStatistics> methodMetricsSummary =
+        metrics.stream()
+            .flatMap(m -> m.getMethodMetrics().stream())
+            .collect(
+                Collectors.groupingBy(
+                    MetricMeasurement::getType,
+                    Collectors.summarizingDouble(MetricMeasurement::getValue)));
+
+    List<MetricsData> normalizedMetrics = new ArrayList<>();
+    for (MetricsData metric : metrics) {
+      List<MetricMeasurement> classMetrics =
+          metric.getClassMetrics().stream()
+              .map(
+                  m ->
+                      MetricMeasurement.of(
+                          m.getType(),
+                          normalize(
+                              m.getValue(),
+                              classMetricsSummary.get(m.getType()).getMin(),
+                              classMetricsSummary.get(m.getType()).getMax())))
+              .collect(Collectors.toList());
+
+      List<MetricMeasurement> methodMetrics =
+          metric.getMethodMetrics().stream()
+              .map(
+                  m ->
+                      MetricMeasurement.of(
+                          m.getType(),
+                          normalize(
+                              m.getValue(),
+                              methodMetricsSummary.get(m.getType()).getMin(),
+                              methodMetricsSummary.get(m.getType()).getMax())))
+              .collect(Collectors.toList());
+
+      normalizedMetrics.add(
+          MetricsData.of(metric.getMethodDescriptor(), methodMetrics, classMetrics));
+    }
+
+    return normalizedMetrics;
+  }
+
+  public static List<MethodWithRisk> getDescendingMethodRiskScores(
+      List<MetricsData> normalizedMetricsData) {
+    return normalizedMetricsData.stream()
         .map(RiskMetricCalculator::calculateRiskScore)
         .sorted(sortByRiskDescending())
         .collect(Collectors.toList());
   }
 
-  private static Comparator<ClassWithRisk> sortByRiskDescending() {
-    return Comparator.comparingDouble(ClassWithRisk::getRisk).reversed();
-  }
-
-  private static List<ClassMetrics> getNormalizedClassMetrics(List<ClassMetrics> metrics) {
-    Map<String, DoubleSummaryStatistics> summary =
-        metrics.stream()
-            .flatMap(m -> m.getClassMetrics().stream())
-            .collect(
-                Collectors.groupingBy(
-                    MetricMeasurement::getMetricName,
-                    Collectors.summarizingDouble(MetricMeasurement::getValue)));
-
-    List<ClassMetrics> normalizedClassMetrics = new ArrayList<>();
-    for (ClassMetrics classMetric : metrics) {
-      List<MetricMeasurement> normalizedMetrics =
-          classMetric.getClassMetrics().stream()
-              .map(
-                  m ->
-                      MetricMeasurement.of(
-                          m.getMetricName(),
-                          normalize(
-                              m.getValue(),
-                              summary.get(m.getMetricName()).getMin(),
-                              summary.get(m.getMetricName()).getMax())))
-              .collect(Collectors.toList());
-
-      normalizedClassMetrics.add(
-          ClassMetrics.of(classMetric.getClassName(), normalizedMetrics, null));
-    }
-
-    return normalizedClassMetrics;
+  private static Comparator<MethodWithRisk> sortByRiskDescending() {
+    return Comparator.comparingDouble(MethodWithRisk::getRisk).reversed();
   }
 
   private static double normalize(double value, double min, double max) {
-    return (value - min) / (max - min);
+    double normalizedValue = value - min;
+    double normalizedMax = max - min;
+
+    if (normalizedValue == 0 || normalizedMax == 0) {
+      return 0;
+    }
+
+    return normalizedValue / normalizedMax;
   }
 
-  private static ClassWithRisk calculateRiskScore(ClassMetrics normalizedClassMetrics) {
-    double normalizedWmc =
-        normalizedClassMetrics.getClassMetrics().stream()
-            .filter(m -> m.getMetricName().equalsIgnoreCase("wmc"))
-            .findFirst()
-            .map(MetricMeasurement::getValue)
-            .orElse(0.0);
-    double normalizedCbo =
-        normalizedClassMetrics.getClassMetrics().stream()
-            .filter(m -> m.getMetricName().equalsIgnoreCase("CBO"))
-            .findFirst()
-            .map(MetricMeasurement::getValue)
-            .orElse(0.0);
-    double normalizedRfc =
-        normalizedClassMetrics.getClassMetrics().stream()
-            .filter(m -> m.getMetricName().equalsIgnoreCase("RFC"))
-            .findFirst()
-            .map(MetricMeasurement::getValue)
-            .orElse(0.0);
-    double normalizedDit =
-        normalizedClassMetrics.getClassMetrics().stream()
-            .filter(m -> m.getMetricName().equalsIgnoreCase("DIT"))
-            .findFirst()
-            .map(MetricMeasurement::getValue)
-            .orElse(0.0);
-    double normalizedLoc =
-        normalizedClassMetrics.getClassMetrics().stream()
-            .filter(m -> m.getMetricName().equalsIgnoreCase("LOC"))
-            .findFirst()
-            .map(MetricMeasurement::getValue)
-            .orElse(0.0);
+  private static MethodWithRisk calculateRiskScore(MetricsData normalizedMetricsData) {
+    var classMetricsNameToValueMap =
+        normalizedMetricsData.getClassMetrics().stream()
+            .collect(Collectors.toMap(MetricMeasurement::getType, MetricMeasurement::getValue));
+    var methodMetricsNameToValueMap =
+        normalizedMetricsData.getMethodMetrics().stream()
+            .collect(Collectors.toMap(MetricMeasurement::getType, MetricMeasurement::getValue));
 
-    double W1 = 0.4;
-    double W2 = 0.3;
-    double W3 = 0.1;
-    double W4 = 0.1;
+    double W1 = 0.3;
+    double W2 = 0.2;
+    double W3 = 0.2;
+    double W4 = 0.2;
     double W5 = 0.1;
 
     double riskValue =
-        (W1 * normalizedWmc)
-            + (W2 * normalizedCbo)
-            + (W3 * normalizedRfc)
-            + (W4 * normalizedDit)
-            + (W5 * normalizedLoc);
+        (W1 * methodMetricsNameToValueMap.get(MethodMetricType.WMC))
+            + (W2 * methodMetricsNameToValueMap.get(MethodMetricType.CBO))
+            + (W3 * methodMetricsNameToValueMap.get(MethodMetricType.RFC))
+            + (W4 * methodMetricsNameToValueMap.get(MethodMetricType.FOUT))
+            + (W5 * methodMetricsNameToValueMap.get(MethodMetricType.FIN));
 
-    return ClassWithRisk.of(normalizedClassMetrics.getClassName(), riskValue);
+    return MethodWithRisk.of(normalizedMetricsData.getMethodDescriptor(), riskValue);
   }
 }

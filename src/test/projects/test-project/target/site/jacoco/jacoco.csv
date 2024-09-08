@@ -5,5 +5,5 @@ test-project,at.aau.testproject,TextDocument,6,11,0,0,2,4,1,2,1,2
 test-project,at.aau.testproject,ComplexFormatter,7,0,0,0,2,0,2,0,2,0
 test-project,at.aau.testproject,Printer,0,14,0,0,0,5,0,2,0,2
 test-project,at.aau.testproject,SimpleFormatter,6,0,0,0,2,0,2,0,2,0
-test-project,at.aau.testproject.management,DocumentManager,39,0,0,0,12,0,5,0,5,0
+test-project,at.aau.testproject.management,DocumentManager,41,0,0,0,12,0,5,0,5,0
 test-project,at.aau.testproject.management,ReportGenerator,8,0,0,0,3,0,2,0,2,0

@@ -1,6 +1,6 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListHelper;
+import at.aau.util.ListUtils;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -30,11 +30,11 @@ public class Sourcefile {
   }
 
   public List<Line> getLines() {
-    return ListHelper.unmodifiableList(lines);
+    return ListUtils.unmodifiableList(lines);
   }
 
   public List<Counter> getCounters() {
-    return ListHelper.unmodifiableList(counters);
+    return ListUtils.unmodifiableList(counters);
   }
 
   @Override

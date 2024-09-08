@@ -9,19 +9,19 @@ import java.util.List;
 public class DocumentManager {
   private List<Document> documents = new ArrayList<>();
 
-  public void addDocument(Document doc) {
+  public void addDocument(Document doc, String info) {
     documents.add(doc);
   }
 
   public Document createTextDocument(String content) {
     Document doc = new TextDocument(content);
-    addDocument(doc);
+    addDocument(doc, "");
     return doc;
   }
 
   public Document createSpreadsheetDocument(String content) {
     Document doc = new SpreadsheetDocument(content);
-    addDocument(doc);
+    addDocument(doc, null);
     return doc;
   }
 

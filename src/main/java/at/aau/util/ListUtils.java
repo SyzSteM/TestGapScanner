@@ -14,8 +14,8 @@ import org.jetbrains.annotations.Nullable;
  * <p>It is designed as a final class with a private constructor to prevent instantiation,
  * indicating usage strictly as a utility class.
  */
-public final class ListHelper {
-  private ListHelper() {
+public final class ListUtils {
+  private ListUtils() {
     throw new UnsupportedOperationException("Utility class");
   }
 
