@@ -1,6 +1,5 @@
 package at.aau.mojo;
 
-import static io.takari.maven.testing.AbstractTestMavenRuntime.newParameter;
 import static io.takari.maven.testing.AbstractTestResources.assertFilesPresent;
 
 import io.takari.maven.testing.TestMavenRuntime;
@@ -20,6 +19,7 @@ public class TestGapScannerMojoTest {
 
     maven.executeMojo(baseDir, "test-gap-scanner");
 
-    assertFilesPresent(baseDir, "target/site/jacoco/jacoco.xml");
+    //    assertFileContents("", baseDir, "target/test-gap-report.txt");
+    assertFilesPresent(baseDir, "target/site/jacoco/jacoco.xml", "target/test-gap-report.txt");
   }
 }

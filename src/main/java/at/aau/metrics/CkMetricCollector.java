@@ -43,7 +43,10 @@ public final class CkMetricCollector {
             MethodMatcher.methodDescriptorFromCkResult(methodResult.getQualifiedMethodName());
 
         if (methodDescriptor.isEmpty()) {
-          log.warn("Method descriptor is empty; skip - [method='{}']", methodResult);
+          log.warn(
+              "Method descriptor is empty; skip - [classResult='{}', method='{}']",
+              classResult,
+              methodResult);
 
           continue;
         }

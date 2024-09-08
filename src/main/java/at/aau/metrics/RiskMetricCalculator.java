@@ -92,10 +92,10 @@ public final class RiskMetricCalculator {
   }
 
   private static MethodWithRisk calculateRiskScore(MetricsData normalizedMetricsData) {
-    var classMetricsNameToValueMap =
+    Map<MetricType, Double> classMetricsNameToValueMap =
         normalizedMetricsData.getClassMetrics().stream()
             .collect(Collectors.toMap(MetricMeasurement::getType, MetricMeasurement::getValue));
-    var methodMetricsNameToValueMap =
+    Map<MetricType, Double> methodMetricsNameToValueMap =
         normalizedMetricsData.getMethodMetrics().stream()
             .collect(Collectors.toMap(MetricMeasurement::getType, MetricMeasurement::getValue));
 

@@ -26,6 +26,11 @@ public class MethodMatcher {
       return Optional.empty();
     }
 
+    // ignore static initializer blocks, for example 'static { }' at the beginning of a class
+    if (qualifiedMethodName.equalsIgnoreCase("(initializer 1)")){
+      return Optional.empty();
+    }
+
     String[] parts = StringUtils.split(qualifiedMethodName, '/');
 
     if (parts.length != 2) {
@@ -74,17 +79,5 @@ public class MethodMatcher {
     }
 
     return Optional.of(MethodDescriptor.of(normalizedClassName, methodName, parameters));
-  }
-
-  public static void main(String[] args) {
-    // Example data from CKMetrics and JaCoCo
-    String ckMetricMethod =
-        "at.aau.testproject.management.DocumentManager.addDocument/2[at.aau.testproject.Document,java.lang.String]";
-    String jacocoClassName = "at/aau/testproject/management/DocumentManager";
-    String jacocoMethodName = "addDocument";
-    String jacocoMethodDesc = "(Lat/aau/testproject/Document;Ljava/lang/String;)V";
-
-    methodDescriptorFromCkResult(ckMetricMethod);
-    methodDescriptorFromJacoco(jacocoClassName, jacocoMethodName, jacocoMethodDesc);
   }
 }

@@ -6,7 +6,6 @@ import at.aau.model.ClassWithRisk;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
 
 class CkMetricCollectorTest {
 

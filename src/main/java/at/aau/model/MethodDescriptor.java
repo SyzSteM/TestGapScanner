@@ -3,6 +3,7 @@ package at.aau.model;
 import at.aau.util.ListUtils;
 import java.util.List;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 public class MethodDescriptor {
   private final String className;
@@ -30,6 +31,10 @@ public class MethodDescriptor {
 
   public List<String> getParameters() {
     return parameters;
+  }
+
+  public String getSymbol() {
+    return String.format("%s.%s", StringUtils.substringAfterLast(className, "."), methodName);
   }
 
   @Override
