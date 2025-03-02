@@ -33,26 +33,33 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!--  provided  -->
-    <maven-core.version>3.9.6</maven-core.version>
-    <maven-plugin-annotations.version>3.12.0</maven-plugin-annotations.version>
+    <maven-core.version>3.9.9</maven-core.version>
+    <maven-plugin-annotations.version>3.15.1</maven-plugin-annotations.version>
 
     <!--  compile  -->
     <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
     <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
     <jaxb-runtime.version>4.0.5</jaxb-runtime.version>
-    <commons-io.version>2.16.1</commons-io.version>
-    <annotations.version>18.0.0</annotations.version>
+    <commons-io.version>2.18.0</commons-io.version>
+    <annotations.version>26.0.2</annotations.version>
+    <ck.version>0.7.0</ck.version>
 
     <!--  test  -->
     <maven-plugin-testing-harness.version>3.3.0</maven-plugin-testing-harness.version>
+    <junit.version>4.13.2</junit.version>
+    <assertj-core.version>3.27.3</assertj-core.version>
+    <takari-plugin-testing.version>3.0.5</takari-plugin-testing.version>
+    <takari-plugin-integration-testing.version>3.0.5</takari-plugin-integration-testing.version>
 
     <!--  plugins  -->
-    <maven-plugin-plugin.version>3.12.0</maven-plugin-plugin.version>
-    <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
-    <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
-    <maven-jxr-plugin.version>3.3.2</maven-jxr-plugin.version>
-    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-plugin-plugin.version>3.15.1</maven-plugin-plugin.version>
+    <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
+    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+    <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
+    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <error-prone.version>2.27.0</error-prone.version>
+    <takari-lifecycle-plugin.version>2.2.0</takari-lifecycle-plugin.version>
+    <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
   </properties>
 
   <dependencies>
@@ -111,7 +118,7 @@
     <dependency>
       <groupId>com.github.mauricioaniche</groupId>
       <artifactId>ck</artifactId>
-      <version>0.7.0</version>
+      <version>${ck.version}</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-io</artifactId>
@@ -124,26 +131,26 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.25.3</version>
+      <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>io.takari.maven.plugins</groupId>
       <artifactId>takari-plugin-testing</artifactId>
-      <version>3.0.4</version>
+      <version>${takari-plugin-testing.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.takari.maven.plugins</groupId>
       <artifactId>takari-plugin-integration-testing</artifactId>
-      <version>3.0.4</version>
+      <version>${takari-plugin-integration-testing.version}</version>
       <type>pom</type>
       <scope>test</scope>
       <exclusions>
@@ -188,6 +195,11 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions-maven-plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -212,13 +224,36 @@
       <plugin>
         <groupId>io.takari.maven.plugins</groupId>
         <artifactId>takari-lifecycle-plugin</artifactId>
-        <version>2.1.7</version>
+        <version>${takari-lifecycle-plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
           <proc>proc</proc>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${versions-maven-plugin.version}</version>
+        <configuration>
+          <ruleSet>
+            <ignoreVersions>
+              <ignoreVersion>
+                <type>regex</type>
+                <!--
+                Case-insensitive match for:
+                  - anything followed by a dot or dash,
+                  - then alpha|beta|rc|m,
+                  - optionally followed by digits,
+                  - and anything else afterwards.
+                Examples excluded:
+                  4.0.0-M16, 7.0.0.Beta4, 12.0.0.M3, 1.0.0-alpha1, 3.2-rc
+                -->
+                <version>(?i).*[.-](alpha|beta|rc|m)\d*.*</version>
+              </ignoreVersion>
+            </ignoreVersions>
+          </ruleSet>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
