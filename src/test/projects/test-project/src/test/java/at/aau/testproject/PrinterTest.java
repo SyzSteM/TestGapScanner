@@ -20,4 +20,5 @@ class PrinterTest {
 
     verify(formatter).format("Hello World");
   }
+
 }

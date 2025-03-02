@@ -1,12 +1,5 @@
 package at.aau.metrics;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import at.aau.model.ClassWithRisk;
-import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
 class CkMetricCollectorTest {
 
 //  @Test

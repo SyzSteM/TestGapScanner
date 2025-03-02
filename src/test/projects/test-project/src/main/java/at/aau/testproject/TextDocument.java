@@ -1,6 +1,7 @@
 package at.aau.testproject;
 
 public class TextDocument extends Document {
+
   public TextDocument(String content) {
     super(content);
   }
@@ -13,4 +14,5 @@ public class TextDocument extends Document {
   public void addText(String text) {
     this.content += " " + text;
   }
+
 }

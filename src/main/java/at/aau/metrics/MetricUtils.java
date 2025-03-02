@@ -1,17 +1,19 @@
 package at.aau.metrics;
 
-import at.aau.jacoco.model.Method;
-import at.aau.model.MethodDescriptor;
-import at.aau.model.MetricsData;
-import at.aau.model.UntestedClassWithRisk;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import at.aau.jacoco.model.Method;
+import at.aau.model.MethodDescriptor;
+import at.aau.model.MetricsData;
+import at.aau.model.UntestedClassWithRisk;
 
 public final class MetricUtils {
 
@@ -50,4 +52,5 @@ public final class MetricUtils {
   private static Comparator<UntestedClassWithRisk> sortByRiskDescending() {
     return Comparator.comparingDouble(UntestedClassWithRisk::getRisk).reversed();
   }
+
 }

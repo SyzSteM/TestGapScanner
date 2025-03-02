@@ -1,6 +1,8 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListUtils;
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -8,8 +10,8 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.List;
-import java.util.Objects;
+
+import at.aau.util.ListUtils;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "group")
@@ -55,8 +57,12 @@ public class Group {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Group)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Group)) {
+      return false;
+    }
 
     Group group = (Group) o;
     return Objects.equals(name, group.name)
@@ -69,4 +75,5 @@ public class Group {
   public String toString() {
     return "Group{" + "name='" + name + '\'' + '}';
   }
+
 }

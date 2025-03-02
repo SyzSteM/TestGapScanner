@@ -24,4 +24,5 @@ public class GreetingMojo extends AbstractMojo {
   public void setGreeting(String greeting) {
     this.greeting = greeting;
   }
+
 }

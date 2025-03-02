@@ -1,13 +1,15 @@
 package at.aau.jacoco;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import at.aau.jacoco.model.Class;
 import at.aau.jacoco.model.Method;
 import at.aau.jacoco.model.Package;
 import at.aau.util.ListUtils;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public final class JacocoCoverageFilter {
+
   private static final List<String> IGNORED_METHOD_NAMES =
       List.of("<init>", "equals", "hashCode", "toString");
 
@@ -37,4 +39,5 @@ public final class JacocoCoverageFilter {
   private static boolean isUncoveredMethod(Method method) {
     return method.getCounters().stream().allMatch(counter -> counter.getCovered() == 0);
   }
+
 }

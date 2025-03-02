@@ -1,5 +1,17 @@
 package at.aau.mojo;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+import org.apache.maven.execution.MavenSession;
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
+
 import at.aau.jacoco.JacocoCoverageCollector;
 import at.aau.jacoco.JacocoCoverageFilter;
 import at.aau.jacoco.model.Method;
@@ -9,16 +21,6 @@ import at.aau.metrics.MetricUtils;
 import at.aau.metrics.RiskMetricCalculator;
 import at.aau.model.MethodWithRisk;
 import at.aau.model.MetricsData;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-import org.apache.maven.execution.MavenSession;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.project.MavenProject;
 
 @Mojo(name = "test-gap-scanner")
 public class TestGapScannerMojo extends AbstractMojo {
@@ -99,4 +101,5 @@ public class TestGapScannerMojo extends AbstractMojo {
       getLog().error("Error writing content to file; abort - [filePath='{}']" + filePath, e);
     }
   }
+
 }

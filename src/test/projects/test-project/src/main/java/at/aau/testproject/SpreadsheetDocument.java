@@ -1,6 +1,7 @@
 package at.aau.testproject;
 
 public class SpreadsheetDocument extends Document {
+
   public SpreadsheetDocument(String content) {
     super(content);
   }
@@ -13,4 +14,5 @@ public class SpreadsheetDocument extends Document {
   public void addData(String data) {
     this.content += ", " + data;
   }
+
 }

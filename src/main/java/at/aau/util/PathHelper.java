@@ -3,11 +3,13 @@ package at.aau.util;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import org.apache.commons.io.file.AccumulatorPathVisitor;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.maven.plugin.MojoFailureException;
 
 public final class PathHelper {
+
   private PathHelper() {
     throw new UnsupportedOperationException("Utility class");
   }
@@ -31,4 +33,5 @@ public final class PathHelper {
       throw new MojoFailureException("Failed to walk output directory " + path, e);
     }
   }
+
 }

@@ -1,16 +1,17 @@
 package at.aau.metrics;
 
-import at.aau.model.MethodMetricType;
-import at.aau.model.MethodWithRisk;
-import at.aau.model.MetricMeasurement;
-import at.aau.model.MetricType;
-import at.aau.model.MetricsData;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import at.aau.model.MethodMetricType;
+import at.aau.model.MethodWithRisk;
+import at.aau.model.MetricMeasurement;
+import at.aau.model.MetricType;
+import at.aau.model.MetricsData;
 
 public final class RiskMetricCalculator {
 
@@ -25,7 +26,8 @@ public final class RiskMetricCalculator {
             .collect(
                 Collectors.groupingBy(
                     MetricMeasurement::getType,
-                    Collectors.summarizingDouble(MetricMeasurement::getValue)));
+                    Collectors.summarizingDouble(MetricMeasurement::getValue)
+                ));
 
     Map<MetricType, DoubleSummaryStatistics> methodMetricsSummary =
         metrics.stream()
@@ -33,7 +35,8 @@ public final class RiskMetricCalculator {
             .collect(
                 Collectors.groupingBy(
                     MetricMeasurement::getType,
-                    Collectors.summarizingDouble(MetricMeasurement::getValue)));
+                    Collectors.summarizingDouble(MetricMeasurement::getValue)
+                ));
 
     List<MetricsData> normalizedMetrics = new ArrayList<>();
     for (MetricsData metric : metrics) {
@@ -46,7 +49,9 @@ public final class RiskMetricCalculator {
                           normalize(
                               m.getValue(),
                               classMetricsSummary.get(m.getType()).getMin(),
-                              classMetricsSummary.get(m.getType()).getMax())))
+                              classMetricsSummary.get(m.getType()).getMax()
+                          )
+                      ))
               .collect(Collectors.toList());
 
       List<MetricMeasurement> methodMetrics =
@@ -58,7 +63,9 @@ public final class RiskMetricCalculator {
                           normalize(
                               m.getValue(),
                               methodMetricsSummary.get(m.getType()).getMin(),
-                              methodMetricsSummary.get(m.getType()).getMax())))
+                              methodMetricsSummary.get(m.getType()).getMax()
+                          )
+                      ))
               .collect(Collectors.toList());
 
       normalizedMetrics.add(
@@ -69,7 +76,8 @@ public final class RiskMetricCalculator {
   }
 
   public static List<MethodWithRisk> getDescendingMethodRiskScores(
-      List<MetricsData> normalizedMetricsData) {
+      List<MetricsData> normalizedMetricsData
+  ) {
     return normalizedMetricsData.stream()
         .map(RiskMetricCalculator::calculateRiskScore)
         .sorted(sortByRiskDescending())
@@ -114,4 +122,5 @@ public final class RiskMetricCalculator {
 
     return MethodWithRisk.of(normalizedMetricsData.getMethodDescriptor(), riskValue);
   }
+
 }

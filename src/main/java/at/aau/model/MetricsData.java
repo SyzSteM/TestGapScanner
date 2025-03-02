@@ -1,11 +1,14 @@
 package at.aau.model;
 
-import at.aau.util.ListUtils;
-import com.google.common.base.MoreObjects;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.common.base.MoreObjects;
+
+import at.aau.util.ListUtils;
+
 public class MetricsData {
+
   private final MethodDescriptor methodDescriptor;
   private final List<MetricMeasurement> methodMetrics;
   private final List<MetricMeasurement> classMetrics;
@@ -13,7 +16,8 @@ public class MetricsData {
   private MetricsData(
       MethodDescriptor methodDescriptor,
       List<MetricMeasurement> methodMetrics,
-      List<MetricMeasurement> classMetrics) {
+      List<MetricMeasurement> classMetrics
+  ) {
     this.methodDescriptor = methodDescriptor;
     this.methodMetrics = ListUtils.unmodifiableList(methodMetrics);
     this.classMetrics = ListUtils.unmodifiableList(classMetrics);
@@ -24,7 +28,8 @@ public class MetricsData {
       String methodName,
       List<String> parameterNames,
       List<MetricMeasurement> methodMetrics,
-      List<MetricMeasurement> classMetrics) {
+      List<MetricMeasurement> classMetrics
+  ) {
     return new MetricsData(
         MethodDescriptor.of(className, methodName, parameterNames), methodMetrics, classMetrics);
   }
@@ -32,7 +37,8 @@ public class MetricsData {
   public static MetricsData of(
       MethodDescriptor methodDescriptor,
       List<MetricMeasurement> methodMetrics,
-      List<MetricMeasurement> classMetrics) {
+      List<MetricMeasurement> classMetrics
+  ) {
     return new MetricsData(methodDescriptor, methodMetrics, classMetrics);
   }
 
@@ -70,8 +76,12 @@ public class MetricsData {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof MetricsData)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof MetricsData)) {
+      return false;
+    }
 
     MetricsData that = (MetricsData) o;
     return Objects.equals(methodDescriptor, that.methodDescriptor)
@@ -87,4 +97,5 @@ public class MetricsData {
         .add("classMetrics", classMetrics)
         .toString();
   }
+
 }

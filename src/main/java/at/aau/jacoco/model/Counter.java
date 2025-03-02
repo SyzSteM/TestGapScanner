@@ -1,12 +1,13 @@
 package at.aau.jacoco.model;
 
+import java.util.Objects;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "counter")
@@ -44,8 +45,12 @@ public class Counter {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Counter)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Counter)) {
+      return false;
+    }
 
     Counter counter = (Counter) o;
     return missed == counter.missed
@@ -65,4 +70,5 @@ public class Counter {
         + covered
         + '}';
   }
+
 }

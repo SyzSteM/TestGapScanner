@@ -1,6 +1,7 @@
 package at.aau.testproject;
 
 public abstract class Document {
+
   protected String content;
 
   public Document(String content) {
@@ -16,4 +17,5 @@ public abstract class Document {
   public void setContent(String content) {
     this.content = content;
   }
+
 }

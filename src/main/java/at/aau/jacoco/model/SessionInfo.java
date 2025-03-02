@@ -1,12 +1,13 @@
 package at.aau.jacoco.model;
 
+import java.util.Objects;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "sessioninfo")
@@ -46,8 +47,12 @@ public class SessionInfo {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof SessionInfo)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SessionInfo)) {
+      return false;
+    }
 
     SessionInfo that = (SessionInfo) o;
     return Objects.equals(id, that.id)
@@ -69,4 +74,5 @@ public class SessionInfo {
         + '\''
         + '}';
   }
+
 }

@@ -3,10 +3,12 @@ package at.aau.testproject.management;
 import at.aau.testproject.Document;
 import at.aau.testproject.SpreadsheetDocument;
 import at.aau.testproject.TextDocument;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentManager {
+
   private List<Document> documents = new ArrayList<>();
 
   public void addDocument(Document doc, String info) {
@@ -28,4 +30,5 @@ public class DocumentManager {
   public void displayAllDocuments() {
     documents.forEach(Document::display);
   }
+
 }

@@ -1,14 +1,17 @@
 package at.aau.metrics;
 
-import at.aau.model.ClassMetricType;
-import at.aau.model.MethodMetricType;
-import at.aau.util.ListUtils;
-import com.github.mauricioaniche.ck.CKClassResult;
-import com.github.mauricioaniche.ck.CKMethodResult;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.mauricioaniche.ck.CKClassResult;
+import com.github.mauricioaniche.ck.CKMethodResult;
+
+import at.aau.model.ClassMetricType;
+import at.aau.model.MethodMetricType;
+import at.aau.util.ListUtils;
+
 public final class CkMetric {
+
   private static final List<CkClassMetric> CK_CLASS_METRICS = new ArrayList<>();
   private static final List<CkMethodMetric> CK_METHOD_METRICS = new ArrayList<>();
 
@@ -43,7 +46,8 @@ public final class CkMetric {
         CkMethodMetric.of(
             MethodMetricType.CBOM,
             "Coupling Between Object classes modified",
-            CKMethodResult::getCboModified));
+            CKMethodResult::getCboModified
+        ));
     CK_METHOD_METRICS.add(
         CkMethodMetric.of(MethodMetricType.FIN, "Fan In", CKMethodResult::getFanin));
     CK_METHOD_METRICS.add(
@@ -66,4 +70,5 @@ public final class CkMetric {
   public static List<CkMethodMetric> getCkMethodMetrics() {
     return ListUtils.unmodifiableList(CK_METHOD_METRICS);
   }
+
 }

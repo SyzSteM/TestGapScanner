@@ -1,12 +1,15 @@
 package at.aau.metrics;
 
-import at.aau.model.ClassMetricType;
-import com.github.mauricioaniche.ck.CKClassResult;
-import com.google.common.base.MoreObjects;
 import java.util.Objects;
 import java.util.function.Function;
 
+import com.github.mauricioaniche.ck.CKClassResult;
+import com.google.common.base.MoreObjects;
+
+import at.aau.model.ClassMetricType;
+
 public final class CkClassMetric {
+
   private final ClassMetricType type;
   private final String description;
   private final Function<CKClassResult, Integer> getter;
@@ -44,9 +47,13 @@ public final class CkClassMetric {
   }
 
   @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof CkClassMetric)) return false;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof CkClassMetric)) {
+      return false;
+    }
 
     CkClassMetric that = (CkClassMetric) o;
     return type == that.type
@@ -62,4 +69,5 @@ public final class CkClassMetric {
         .add("getter", getter)
         .toString();
   }
+
 }

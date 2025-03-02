@@ -2,7 +2,8 @@ package at.aau.model;
 
 import java.util.Objects;
 
-public final class  ClassWithRisk {
+public final class ClassWithRisk {
+
   private final String className;
   private final double risk;
 
@@ -31,9 +32,13 @@ public final class  ClassWithRisk {
   }
 
   @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof ClassWithRisk)) return false;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ClassWithRisk)) {
+      return false;
+    }
 
     ClassWithRisk that = (ClassWithRisk) o;
     return Double.compare(risk, that.risk) == 0 && Objects.equals(className, that.className);
@@ -43,4 +48,5 @@ public final class  ClassWithRisk {
   public String toString() {
     return "ClassWithRisk{" + "className='" + className + '\'' + ", risk=" + risk + '}';
   }
+
 }

@@ -1,11 +1,14 @@
 package at.aau.model;
 
-import at.aau.util.ListUtils;
 import java.util.List;
 import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
+import at.aau.util.ListUtils;
+
 public class MethodDescriptor {
+
   private final String className;
   private final String methodName;
   private final List<String> parameters;
@@ -47,8 +50,12 @@ public class MethodDescriptor {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof MethodDescriptor)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof MethodDescriptor)) {
+      return false;
+    }
 
     MethodDescriptor that = (MethodDescriptor) o;
     return Objects.equals(className, that.className)
@@ -60,4 +67,5 @@ public class MethodDescriptor {
   public String toString() {
     return String.format("%s.%s(%s)", className, methodName, String.join(", ", parameters));
   }
+
 }

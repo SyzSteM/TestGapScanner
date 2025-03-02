@@ -1,6 +1,7 @@
 package at.aau.mojo;
 
 import javax.inject.Inject;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -29,4 +30,5 @@ public class DependencyCounterMojo extends AbstractMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
     getLog().info("Number of dependencies: " + depCountProvider.getDepCount(project, scope));
   }
+
 }

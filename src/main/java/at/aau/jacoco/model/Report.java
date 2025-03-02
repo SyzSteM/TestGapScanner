@@ -1,6 +1,8 @@
 package at.aau.jacoco.model;
 
-import at.aau.util.ListUtils;
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -8,8 +10,8 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.List;
-import java.util.Objects;
+
+import at.aau.util.ListUtils;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "report")
@@ -63,8 +65,12 @@ public class Report {
 
   @Override
   public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Report)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Report)) {
+      return false;
+    }
 
     Report report = (Report) o;
     return Objects.equals(name, report.name)
@@ -78,4 +84,5 @@ public class Report {
   public String toString() {
     return "Report{" + "name='" + name + '\'' + '}';
   }
+
 }

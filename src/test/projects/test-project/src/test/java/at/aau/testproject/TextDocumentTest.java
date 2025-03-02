@@ -15,6 +15,8 @@ class TextDocumentTest {
     assertEquals(
         "Initial text",
         doc.getContent(),
-        "Text should be added correctly to the document content.");
+        "Text should be added correctly to the document content."
+    );
   }
+
 }

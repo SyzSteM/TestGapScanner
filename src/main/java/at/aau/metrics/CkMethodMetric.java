@@ -1,12 +1,15 @@
 package at.aau.metrics;
 
-import at.aau.model.MethodMetricType;
-import com.github.mauricioaniche.ck.CKMethodResult;
-import com.google.common.base.MoreObjects;
 import java.util.Objects;
 import java.util.function.Function;
 
+import com.github.mauricioaniche.ck.CKMethodResult;
+import com.google.common.base.MoreObjects;
+
+import at.aau.model.MethodMetricType;
+
 public final class CkMethodMetric {
+
   private final MethodMetricType type;
   private final String description;
   private final Function<CKMethodResult, Integer> getter;
@@ -44,9 +47,13 @@ public final class CkMethodMetric {
   }
 
   @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof CkMethodMetric)) return false;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof CkMethodMetric)) {
+      return false;
+    }
 
     CkMethodMetric metric = (CkMethodMetric) o;
     return type == metric.type
@@ -62,4 +69,5 @@ public final class CkMethodMetric {
         .add("getter", getter)
         .toString();
   }
+
 }

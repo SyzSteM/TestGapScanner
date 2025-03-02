@@ -1,11 +1,13 @@
 package at.aau.model;
 
-import at.aau.jacoco.model.Counter;
-import at.aau.jacoco.model.Method;
 import java.util.List;
 import java.util.Objects;
 
+import at.aau.jacoco.model.Counter;
+import at.aau.jacoco.model.Method;
+
 public final class UntestedClassWithRisk {
+
   private final String fqn;
   private final double risk;
   private final List<Method> methods;
@@ -51,8 +53,12 @@ public final class UntestedClassWithRisk {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof UntestedClassWithRisk)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof UntestedClassWithRisk)) {
+      return false;
+    }
 
     UntestedClassWithRisk that = (UntestedClassWithRisk) o;
     return Double.compare(risk, that.risk) == 0
@@ -65,4 +71,5 @@ public final class UntestedClassWithRisk {
   public String toString() {
     return "UntestedClassWithRisk{" + "fqn='" + fqn + '\'' + ", risk=" + risk + '}';
   }
+
 }

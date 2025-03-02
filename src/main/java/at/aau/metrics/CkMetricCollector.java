@@ -1,22 +1,26 @@
 package at.aau.metrics;
 
-import at.aau.model.MethodDescriptor;
-import at.aau.model.MetricMeasurement;
-import at.aau.model.MetricType;
-import at.aau.model.MetricsData;
-import at.aau.util.PathHelper;
-import com.github.mauricioaniche.ck.CK;
-import com.github.mauricioaniche.ck.CKClassResult;
-import com.github.mauricioaniche.ck.CKMethodResult;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import com.github.mauricioaniche.ck.CK;
+import com.github.mauricioaniche.ck.CKClassResult;
+import com.github.mauricioaniche.ck.CKMethodResult;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import at.aau.model.MethodDescriptor;
+import at.aau.model.MetricMeasurement;
+import at.aau.model.MetricType;
+import at.aau.model.MetricsData;
+import at.aau.util.PathHelper;
+
 public final class CkMetricCollector {
+
   private static final Logger log = LoggerFactory.getLogger(CkMetricCollector.class);
 
   private CkMetricCollector() {
@@ -46,7 +50,8 @@ public final class CkMetricCollector {
           log.warn(
               "Method descriptor is empty; skip - [classResult='{}', method='{}']",
               classResult,
-              methodResult);
+              methodResult
+          );
 
           continue;
         }
@@ -95,4 +100,5 @@ public final class CkMetricCollector {
 
     return ckNotifier.getCkResults();
   }
+
 }

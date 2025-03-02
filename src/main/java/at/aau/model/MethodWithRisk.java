@@ -1,10 +1,11 @@
 package at.aau.model;
 
-import com.google.common.base.MoreObjects;
 import java.util.Objects;
-import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.base.MoreObjects;
 
 public final class MethodWithRisk {
+
   private final MethodDescriptor methodDescriptor;
   private final double risk;
 
@@ -33,9 +34,13 @@ public final class MethodWithRisk {
   }
 
   @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof MethodWithRisk)) return false;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof MethodWithRisk)) {
+      return false;
+    }
 
     MethodWithRisk that = (MethodWithRisk) o;
     return Double.compare(risk, that.risk) == 0
@@ -49,4 +54,5 @@ public final class MethodWithRisk {
         .add("risk", risk)
         .toString();
   }
+
 }

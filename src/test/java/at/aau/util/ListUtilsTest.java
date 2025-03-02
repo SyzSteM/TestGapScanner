@@ -5,9 +5,11 @@ import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
 
 public class ListUtilsTest {
+
   void shouldReturnEmptyList_whenListIsNullOrEmpty(List<?> list) {
     assertThat(ListUtils.unmodifiableList(list)).isEmpty();
   }
@@ -34,4 +36,5 @@ public class ListUtilsTest {
   public void shouldReturnTrue_whenListIsNotNullOrEmpty() {
     assertThat(ListUtils.notNullOrEmpty(List.of(1))).isTrue();
   }
+
 }

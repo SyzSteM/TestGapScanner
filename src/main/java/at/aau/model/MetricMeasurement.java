@@ -1,9 +1,11 @@
 package at.aau.model;
 
-import com.google.common.base.MoreObjects;
 import java.util.Objects;
 
+import com.google.common.base.MoreObjects;
+
 public final class MetricMeasurement {
+
   private final MetricType type;
   private final double value;
 
@@ -33,8 +35,12 @@ public final class MetricMeasurement {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof MetricMeasurement)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof MetricMeasurement)) {
+      return false;
+    }
 
     MetricMeasurement that = (MetricMeasurement) o;
     return Double.compare(value, that.value) == 0 && Objects.equals(type, that.type);
@@ -44,4 +50,5 @@ public final class MetricMeasurement {
   public String toString() {
     return MoreObjects.toStringHelper(this).add("type", type).add("value", value).toString();
   }
+
 }

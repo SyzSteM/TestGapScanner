@@ -1,1 +1,312 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd"><report name="test-project"><sessioninfo id="unknownhost-a71dd380" start="1724320018900" dump="1724320020098"/><package name="at/aau/testproject"><class name="at/aau/testproject/Formatter" sourcefilename="Formatter.java"/><class name="at/aau/testproject/SpreadsheetDocument" sourcefilename="SpreadsheetDocument.java"><method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="5"><counter type="INSTRUCTION" missed="4" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="display" desc="()V" line="10"><counter type="INSTRUCTION" missed="6" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="addData" desc="(Ljava/lang/String;)V" line="14"><counter type="INSTRUCTION" missed="7" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="17" covered="0"/><counter type="LINE" missed="6" covered="0"/><counter type="COMPLEXITY" missed="3" covered="0"/><counter type="METHOD" missed="3" covered="0"/><counter type="CLASS" missed="1" covered="0"/></class><class name="at/aau/testproject/Document" sourcefilename="Document.java"><method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="6"><counter type="INSTRUCTION" missed="0" covered="6"/><counter type="LINE" missed="0" covered="3"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><method name="getContent" desc="()Ljava/lang/String;" line="13"><counter type="INSTRUCTION" missed="0" covered="3"/><counter type="LINE" missed="0" covered="1"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><method name="setContent" desc="(Ljava/lang/String;)V" line="17"><counter type="INSTRUCTION" missed="4" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="4" covered="9"/><counter type="LINE" missed="2" covered="4"/><counter type="COMPLEXITY" missed="1" covered="2"/><counter type="METHOD" missed="1" covered="2"/><counter type="CLASS" missed="0" covered="1"/></class><class name="at/aau/testproject/TextDocument" sourcefilename="TextDocument.java"><method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="5"><counter type="INSTRUCTION" missed="0" covered="4"/><counter type="LINE" missed="0" covered="2"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><method name="display" desc="()V" line="10"><counter type="INSTRUCTION" missed="6" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="addText" desc="(Ljava/lang/String;)V" line="14"><counter type="INSTRUCTION" missed="0" covered="7"/><counter type="LINE" missed="0" covered="2"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><counter type="INSTRUCTION" missed="6" covered="11"/><counter type="LINE" missed="2" covered="4"/><counter type="COMPLEXITY" missed="1" covered="2"/><counter type="METHOD" missed="1" covered="2"/><counter type="CLASS" missed="0" covered="1"/></class><class name="at/aau/testproject/ComplexFormatter" sourcefilename="ComplexFormatter.java"><method name="&lt;init&gt;" desc="()V" line="3"><counter type="INSTRUCTION" missed="3" covered="0"/><counter type="LINE" missed="1" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="format" desc="(Ljava/lang/String;)Ljava/lang/String;" line="6"><counter type="INSTRUCTION" missed="4" covered="0"/><counter type="LINE" missed="1" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="7" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></class><class name="at/aau/testproject/Printer" sourcefilename="Printer.java"><method name="&lt;init&gt;" desc="(Lat/aau/testproject/Formatter;)V" line="6"><counter type="INSTRUCTION" missed="0" covered="6"/><counter type="LINE" missed="0" covered="3"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><method name="print" desc="(Lat/aau/testproject/Document;)V" line="11"><counter type="INSTRUCTION" missed="0" covered="8"/><counter type="LINE" missed="0" covered="2"/><counter type="COMPLEXITY" missed="0" covered="1"/><counter type="METHOD" missed="0" covered="1"/></method><counter type="INSTRUCTION" missed="0" covered="14"/><counter type="LINE" missed="0" covered="5"/><counter type="COMPLEXITY" missed="0" covered="2"/><counter type="METHOD" missed="0" covered="2"/><counter type="CLASS" missed="0" covered="1"/></class><class name="at/aau/testproject/SimpleFormatter" sourcefilename="SimpleFormatter.java"><method name="&lt;init&gt;" desc="()V" line="3"><counter type="INSTRUCTION" missed="3" covered="0"/><counter type="LINE" missed="1" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="format" desc="(Ljava/lang/String;)Ljava/lang/String;" line="6"><counter type="INSTRUCTION" missed="3" covered="0"/><counter type="LINE" missed="1" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="6" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></class><sourcefile name="SimpleFormatter.java"><line nr="3" mi="3" ci="0" mb="0" cb="0"/><line nr="6" mi="3" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="6" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></sourcefile><sourcefile name="TextDocument.java"><line nr="5" mi="0" ci="3" mb="0" cb="0"/><line nr="6" mi="0" ci="1" mb="0" cb="0"/><line nr="10" mi="5" ci="0" mb="0" cb="0"/><line nr="11" mi="1" ci="0" mb="0" cb="0"/><line nr="14" mi="0" ci="6" mb="0" cb="0"/><line nr="15" mi="0" ci="1" mb="0" cb="0"/><counter type="INSTRUCTION" missed="6" covered="11"/><counter type="LINE" missed="2" covered="4"/><counter type="COMPLEXITY" missed="1" covered="2"/><counter type="METHOD" missed="1" covered="2"/><counter type="CLASS" missed="0" covered="1"/></sourcefile><sourcefile name="Document.java"><line nr="6" mi="0" ci="2" mb="0" cb="0"/><line nr="7" mi="0" ci="3" mb="0" cb="0"/><line nr="8" mi="0" ci="1" mb="0" cb="0"/><line nr="13" mi="0" ci="3" mb="0" cb="0"/><line nr="17" mi="3" ci="0" mb="0" cb="0"/><line nr="18" mi="1" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="4" covered="9"/><counter type="LINE" missed="2" covered="4"/><counter type="COMPLEXITY" missed="1" covered="2"/><counter type="METHOD" missed="1" covered="2"/><counter type="CLASS" missed="0" covered="1"/></sourcefile><sourcefile name="SpreadsheetDocument.java"><line nr="5" mi="3" ci="0" mb="0" cb="0"/><line nr="6" mi="1" ci="0" mb="0" cb="0"/><line nr="10" mi="5" ci="0" mb="0" cb="0"/><line nr="11" mi="1" ci="0" mb="0" cb="0"/><line nr="14" mi="6" ci="0" mb="0" cb="0"/><line nr="15" mi="1" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="17" covered="0"/><counter type="LINE" missed="6" covered="0"/><counter type="COMPLEXITY" missed="3" covered="0"/><counter type="METHOD" missed="3" covered="0"/><counter type="CLASS" missed="1" covered="0"/></sourcefile><sourcefile name="Printer.java"><line nr="6" mi="0" ci="2" mb="0" cb="0"/><line nr="7" mi="0" ci="3" mb="0" cb="0"/><line nr="8" mi="0" ci="1" mb="0" cb="0"/><line nr="11" mi="0" ci="7" mb="0" cb="0"/><line nr="12" mi="0" ci="1" mb="0" cb="0"/><counter type="INSTRUCTION" missed="0" covered="14"/><counter type="LINE" missed="0" covered="5"/><counter type="COMPLEXITY" missed="0" covered="2"/><counter type="METHOD" missed="0" covered="2"/><counter type="CLASS" missed="0" covered="1"/></sourcefile><sourcefile name="ComplexFormatter.java"><line nr="3" mi="3" ci="0" mb="0" cb="0"/><line nr="6" mi="4" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="7" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></sourcefile><sourcefile name="Formatter.java"/><counter type="INSTRUCTION" missed="40" covered="34"/><counter type="LINE" missed="14" covered="13"/><counter type="COMPLEXITY" missed="9" covered="6"/><counter type="METHOD" missed="9" covered="6"/><counter type="CLASS" missed="3" covered="3"/></package><package name="at/aau/testproject/management"><class name="at/aau/testproject/management/DocumentManager" sourcefilename="DocumentManager.java"><method name="&lt;init&gt;" desc="()V" line="9"><counter type="INSTRUCTION" missed="8" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="addDocument" desc="(Lat/aau/testproject/Document;Ljava/lang/String;)V" line="13"><counter type="INSTRUCTION" missed="6" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="createTextDocument" desc="(Ljava/lang/String;)Lat/aau/testproject/Document;" line="17"><counter type="INSTRUCTION" missed="11" covered="0"/><counter type="LINE" missed="3" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="createSpreadsheetDocument" desc="(Ljava/lang/String;)Lat/aau/testproject/Document;" line="23"><counter type="INSTRUCTION" missed="11" covered="0"/><counter type="LINE" missed="3" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="displayAllDocuments" desc="()V" line="29"><counter type="INSTRUCTION" missed="5" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="41" covered="0"/><counter type="LINE" missed="12" covered="0"/><counter type="COMPLEXITY" missed="5" covered="0"/><counter type="METHOD" missed="5" covered="0"/><counter type="CLASS" missed="1" covered="0"/></class><class name="at/aau/testproject/management/ReportGenerator" sourcefilename="ReportGenerator.java"><method name="&lt;init&gt;" desc="()V" line="5"><counter type="INSTRUCTION" missed="3" covered="0"/><counter type="LINE" missed="1" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><method name="generateContentReport" desc="(Lat/aau/testproject/Document;)Ljava/lang/String;" line="7"><counter type="INSTRUCTION" missed="5" covered="0"/><counter type="LINE" missed="2" covered="0"/><counter type="COMPLEXITY" missed="1" covered="0"/><counter type="METHOD" missed="1" covered="0"/></method><counter type="INSTRUCTION" missed="8" covered="0"/><counter type="LINE" missed="3" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></class><sourcefile name="ReportGenerator.java"><line nr="5" mi="3" ci="0" mb="0" cb="0"/><line nr="7" mi="2" ci="0" mb="0" cb="0"/><line nr="8" mi="3" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="8" covered="0"/><counter type="LINE" missed="3" covered="0"/><counter type="COMPLEXITY" missed="2" covered="0"/><counter type="METHOD" missed="2" covered="0"/><counter type="CLASS" missed="1" covered="0"/></sourcefile><sourcefile name="DocumentManager.java"><line nr="9" mi="2" ci="0" mb="0" cb="0"/><line nr="10" mi="6" ci="0" mb="0" cb="0"/><line nr="13" mi="5" ci="0" mb="0" cb="0"/><line nr="14" mi="1" ci="0" mb="0" cb="0"/><line nr="17" mi="5" ci="0" mb="0" cb="0"/><line nr="18" mi="4" ci="0" mb="0" cb="0"/><line nr="19" mi="2" ci="0" mb="0" cb="0"/><line nr="23" mi="5" ci="0" mb="0" cb="0"/><line nr="24" mi="4" ci="0" mb="0" cb="0"/><line nr="25" mi="2" ci="0" mb="0" cb="0"/><line nr="29" mi="4" ci="0" mb="0" cb="0"/><line nr="30" mi="1" ci="0" mb="0" cb="0"/><counter type="INSTRUCTION" missed="41" covered="0"/><counter type="LINE" missed="12" covered="0"/><counter type="COMPLEXITY" missed="5" covered="0"/><counter type="METHOD" missed="5" covered="0"/><counter type="CLASS" missed="1" covered="0"/></sourcefile><counter type="INSTRUCTION" missed="49" covered="0"/><counter type="LINE" missed="15" covered="0"/><counter type="COMPLEXITY" missed="7" covered="0"/><counter type="METHOD" missed="7" covered="0"/><counter type="CLASS" missed="2" covered="0"/></package><counter type="INSTRUCTION" missed="89" covered="34"/><counter type="LINE" missed="29" covered="13"/><counter type="COMPLEXITY" missed="16" covered="6"/><counter type="METHOD" missed="16" covered="6"/><counter type="CLASS" missed="5" covered="3"/></report>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN"
+  "report.dtd">
+<report name="test-project">
+  <sessioninfo id="unknownhost-a71dd380" start="1724320018900" dump="1724320020098" />
+  <package name="at/aau/testproject">
+    <class name="at/aau/testproject/Formatter" sourcefilename="Formatter.java" />
+    <class name="at/aau/testproject/SpreadsheetDocument" sourcefilename="SpreadsheetDocument.java">
+      <method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="5">
+        <counter type="INSTRUCTION" missed="4" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="display" desc="()V" line="10">
+        <counter type="INSTRUCTION" missed="6" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="addData" desc="(Ljava/lang/String;)V" line="14">
+        <counter type="INSTRUCTION" missed="7" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="17" covered="0" />
+      <counter type="LINE" missed="6" covered="0" />
+      <counter type="COMPLEXITY" missed="3" covered="0" />
+      <counter type="METHOD" missed="3" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <class name="at/aau/testproject/Document" sourcefilename="Document.java">
+      <method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="6">
+        <counter type="INSTRUCTION" missed="0" covered="6" />
+        <counter type="LINE" missed="0" covered="3" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="getContent" desc="()Ljava/lang/String;" line="13">
+        <counter type="INSTRUCTION" missed="0" covered="3" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="setContent" desc="(Ljava/lang/String;)V" line="17">
+        <counter type="INSTRUCTION" missed="4" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="4" covered="9" />
+      <counter type="LINE" missed="2" covered="4" />
+      <counter type="COMPLEXITY" missed="1" covered="2" />
+      <counter type="METHOD" missed="1" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="at/aau/testproject/TextDocument" sourcefilename="TextDocument.java">
+      <method name="&lt;init&gt;" desc="(Ljava/lang/String;)V" line="5">
+        <counter type="INSTRUCTION" missed="0" covered="4" />
+        <counter type="LINE" missed="0" covered="2" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="display" desc="()V" line="10">
+        <counter type="INSTRUCTION" missed="6" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="addText" desc="(Ljava/lang/String;)V" line="14">
+        <counter type="INSTRUCTION" missed="0" covered="7" />
+        <counter type="LINE" missed="0" covered="2" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="6" covered="11" />
+      <counter type="LINE" missed="2" covered="4" />
+      <counter type="COMPLEXITY" missed="1" covered="2" />
+      <counter type="METHOD" missed="1" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="at/aau/testproject/ComplexFormatter" sourcefilename="ComplexFormatter.java">
+      <method name="&lt;init&gt;" desc="()V" line="3">
+        <counter type="INSTRUCTION" missed="3" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="format" desc="(Ljava/lang/String;)Ljava/lang/String;" line="6">
+        <counter type="INSTRUCTION" missed="4" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="7" covered="0" />
+      <counter type="LINE" missed="2" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <class name="at/aau/testproject/Printer" sourcefilename="Printer.java">
+      <method name="&lt;init&gt;" desc="(Lat/aau/testproject/Formatter;)V" line="6">
+        <counter type="INSTRUCTION" missed="0" covered="6" />
+        <counter type="LINE" missed="0" covered="3" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="print" desc="(Lat/aau/testproject/Document;)V" line="11">
+        <counter type="INSTRUCTION" missed="0" covered="8" />
+        <counter type="LINE" missed="0" covered="2" />
+        <counter type="COMPLEXITY" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="0" covered="14" />
+      <counter type="LINE" missed="0" covered="5" />
+      <counter type="COMPLEXITY" missed="0" covered="2" />
+      <counter type="METHOD" missed="0" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="at/aau/testproject/SimpleFormatter" sourcefilename="SimpleFormatter.java">
+      <method name="&lt;init&gt;" desc="()V" line="3">
+        <counter type="INSTRUCTION" missed="3" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="format" desc="(Ljava/lang/String;)Ljava/lang/String;" line="6">
+        <counter type="INSTRUCTION" missed="3" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="6" covered="0" />
+      <counter type="LINE" missed="2" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <sourcefile name="SimpleFormatter.java">
+      <line nr="3" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="6" mi="3" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="6" covered="0" />
+      <counter type="LINE" missed="2" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <sourcefile name="TextDocument.java">
+      <line nr="5" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="6" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="10" mi="5" ci="0" mb="0" cb="0" />
+      <line nr="11" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="14" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="15" mi="0" ci="1" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="6" covered="11" />
+      <counter type="LINE" missed="2" covered="4" />
+      <counter type="COMPLEXITY" missed="1" covered="2" />
+      <counter type="METHOD" missed="1" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="Document.java">
+      <line nr="6" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="7" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="8" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="13" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="17" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="18" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="4" covered="9" />
+      <counter type="LINE" missed="2" covered="4" />
+      <counter type="COMPLEXITY" missed="1" covered="2" />
+      <counter type="METHOD" missed="1" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="SpreadsheetDocument.java">
+      <line nr="5" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="6" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="10" mi="5" ci="0" mb="0" cb="0" />
+      <line nr="11" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="14" mi="6" ci="0" mb="0" cb="0" />
+      <line nr="15" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="17" covered="0" />
+      <counter type="LINE" missed="6" covered="0" />
+      <counter type="COMPLEXITY" missed="3" covered="0" />
+      <counter type="METHOD" missed="3" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <sourcefile name="Printer.java">
+      <line nr="6" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="7" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="8" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="11" mi="0" ci="7" mb="0" cb="0" />
+      <line nr="12" mi="0" ci="1" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="0" covered="14" />
+      <counter type="LINE" missed="0" covered="5" />
+      <counter type="COMPLEXITY" missed="0" covered="2" />
+      <counter type="METHOD" missed="0" covered="2" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="ComplexFormatter.java">
+      <line nr="3" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="6" mi="4" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="7" covered="0" />
+      <counter type="LINE" missed="2" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <sourcefile name="Formatter.java" />
+    <counter type="INSTRUCTION" missed="40" covered="34" />
+    <counter type="LINE" missed="14" covered="13" />
+    <counter type="COMPLEXITY" missed="9" covered="6" />
+    <counter type="METHOD" missed="9" covered="6" />
+    <counter type="CLASS" missed="3" covered="3" />
+  </package>
+  <package name="at/aau/testproject/management">
+    <class name="at/aau/testproject/management/DocumentManager" sourcefilename="DocumentManager.java">
+      <method name="&lt;init&gt;" desc="()V" line="9">
+        <counter type="INSTRUCTION" missed="8" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="addDocument" desc="(Lat/aau/testproject/Document;Ljava/lang/String;)V" line="13">
+        <counter type="INSTRUCTION" missed="6" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="createTextDocument" desc="(Ljava/lang/String;)Lat/aau/testproject/Document;" line="17">
+        <counter type="INSTRUCTION" missed="11" covered="0" />
+        <counter type="LINE" missed="3" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="createSpreadsheetDocument" desc="(Ljava/lang/String;)Lat/aau/testproject/Document;" line="23">
+        <counter type="INSTRUCTION" missed="11" covered="0" />
+        <counter type="LINE" missed="3" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="displayAllDocuments" desc="()V" line="29">
+        <counter type="INSTRUCTION" missed="5" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="41" covered="0" />
+      <counter type="LINE" missed="12" covered="0" />
+      <counter type="COMPLEXITY" missed="5" covered="0" />
+      <counter type="METHOD" missed="5" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <class name="at/aau/testproject/management/ReportGenerator" sourcefilename="ReportGenerator.java">
+      <method name="&lt;init&gt;" desc="()V" line="5">
+        <counter type="INSTRUCTION" missed="3" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="generateContentReport" desc="(Lat/aau/testproject/Document;)Ljava/lang/String;" line="7">
+        <counter type="INSTRUCTION" missed="5" covered="0" />
+        <counter type="LINE" missed="2" covered="0" />
+        <counter type="COMPLEXITY" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="8" covered="0" />
+      <counter type="LINE" missed="3" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <sourcefile name="ReportGenerator.java">
+      <line nr="5" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="7" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="8" mi="3" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="8" covered="0" />
+      <counter type="LINE" missed="3" covered="0" />
+      <counter type="COMPLEXITY" missed="2" covered="0" />
+      <counter type="METHOD" missed="2" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <sourcefile name="DocumentManager.java">
+      <line nr="9" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="10" mi="6" ci="0" mb="0" cb="0" />
+      <line nr="13" mi="5" ci="0" mb="0" cb="0" />
+      <line nr="14" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="17" mi="5" ci="0" mb="0" cb="0" />
+      <line nr="18" mi="4" ci="0" mb="0" cb="0" />
+      <line nr="19" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="23" mi="5" ci="0" mb="0" cb="0" />
+      <line nr="24" mi="4" ci="0" mb="0" cb="0" />
+      <line nr="25" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="29" mi="4" ci="0" mb="0" cb="0" />
+      <line nr="30" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="41" covered="0" />
+      <counter type="LINE" missed="12" covered="0" />
+      <counter type="COMPLEXITY" missed="5" covered="0" />
+      <counter type="METHOD" missed="5" covered="0" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="49" covered="0" />
+    <counter type="LINE" missed="15" covered="0" />
+    <counter type="COMPLEXITY" missed="7" covered="0" />
+    <counter type="METHOD" missed="7" covered="0" />
+    <counter type="CLASS" missed="2" covered="0" />
+  </package>
+  <counter type="INSTRUCTION" missed="89" covered="34" />
+  <counter type="LINE" missed="29" covered="13" />
+  <counter type="COMPLEXITY" missed="16" covered="6" />
+  <counter type="METHOD" missed="16" covered="6" />
+  <counter type="CLASS" missed="5" covered="3" />
+</report>

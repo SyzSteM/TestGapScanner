@@ -1,11 +1,14 @@
 package at.aau.model;
 
-import at.aau.util.ListUtils;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import java.util.List;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+
+import at.aau.util.ListUtils;
+
 public final class ClassMetrics {
+
   private final String className;
   private final List<MetricMeasurement> classMetrics;
   private final List<MetricMeasurement> methodMetrics;
@@ -13,7 +16,8 @@ public final class ClassMetrics {
   private ClassMetrics(
       String className,
       List<MetricMeasurement> classMetrics,
-      List<MetricMeasurement> methodMetrics) {
+      List<MetricMeasurement> methodMetrics
+  ) {
     this.className = className;
     this.classMetrics = ListUtils.unmodifiableList(classMetrics);
     this.methodMetrics = ListUtils.unmodifiableList(methodMetrics);
@@ -22,7 +26,8 @@ public final class ClassMetrics {
   public static ClassMetrics of(
       String className,
       List<MetricMeasurement> classMetrics,
-      List<MetricMeasurement> methodMetrics) {
+      List<MetricMeasurement> methodMetrics
+  ) {
     return new ClassMetrics(className, classMetrics, methodMetrics);
   }
 
@@ -37,8 +42,12 @@ public final class ClassMetrics {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
     ClassMetrics that = (ClassMetrics) obj;
     return Objects.equal(getClassName(), that.getClassName())
         && Objects.equal(getClassMetrics(), that.getClassMetrics())
@@ -61,4 +70,5 @@ public final class ClassMetrics {
   public List<MetricMeasurement> getMethodMetrics() {
     return methodMetrics;
   }
+
 }

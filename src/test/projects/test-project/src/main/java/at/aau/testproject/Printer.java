@@ -1,6 +1,7 @@
 package at.aau.testproject;
 
 public class Printer {
+
   private Formatter formatter;
 
   public Printer(Formatter formatter) {
@@ -10,4 +11,5 @@ public class Printer {
   public void print(Document document) {
     System.out.println(formatter.format(document.getContent()));
   }
+
 }

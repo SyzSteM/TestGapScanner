@@ -1,13 +1,16 @@
 package at.aau.metrics;
 
-import com.github.mauricioaniche.ck.CKClassResult;
-import com.github.mauricioaniche.ck.CKNotifier;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.mauricioaniche.ck.CKClassResult;
+import com.github.mauricioaniche.ck.CKNotifier;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class AggregatingCkNotifier implements CKNotifier {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(AggregatingCkNotifier.class);
 
   private final List<CKClassResult> ckResults = new ArrayList<>();
@@ -25,4 +28,5 @@ class AggregatingCkNotifier implements CKNotifier {
   public List<CKClassResult> getCkResults() {
     return List.copyOf(ckResults);
   }
+
 }

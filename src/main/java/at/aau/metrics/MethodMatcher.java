@@ -1,25 +1,33 @@
 package at.aau.metrics;
 
-import at.aau.jacoco.model.Method;
-import at.aau.model.MethodDescriptor;
-import com.github.mauricioaniche.ck.CKMethodResult;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import com.github.mauricioaniche.ck.CKMethodResult;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import at.aau.jacoco.model.Method;
+import at.aau.model.MethodDescriptor;
 
 public class MethodMatcher {
 
   private static final Logger log = LoggerFactory.getLogger(MethodMatcher.class);
 
   public static Optional<MethodDescriptor> methodDescriptorFromCkResult(
-      CKMethodResult ckMethodResult) {
+      CKMethodResult ckMethodResult
+  ) {
     return methodDescriptorFromCkResult(ckMethodResult.getQualifiedMethodName());
   }
 
   public static Optional<MethodDescriptor> methodDescriptorFromCkResult(
-      String qualifiedMethodName) {
+      String qualifiedMethodName
+  ) {
     if (StringUtils.isBlank(qualifiedMethodName)) {
       log.error("Qualified method name is blank; return empty");
 
@@ -27,7 +35,7 @@ public class MethodMatcher {
     }
 
     // ignore static initializer blocks, for example 'static { }' at the beginning of a class
-    if (qualifiedMethodName.equalsIgnoreCase("(initializer 1)")){
+    if (qualifiedMethodName.equalsIgnoreCase("(initializer 1)")) {
       return Optional.empty();
     }
 
@@ -80,4 +88,5 @@ public class MethodMatcher {
 
     return Optional.of(MethodDescriptor.of(normalizedClassName, methodName, parameters));
   }
+
 }
