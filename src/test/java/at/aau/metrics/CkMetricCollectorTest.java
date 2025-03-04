@@ -5,7 +5,7 @@ class CkMetricCollectorTest {
 //  @Test
 //  void shouldReturnClassMetrics_whenPathIsValid() {
 //    var classPath = Paths.get("/home/timo/Development/plincs/basf");
-//    var metrics = CkMetricCollector.collectMetrics(classPath);
+//    var metrics = CkMetricCollector.collectCkMetrics(classPath);
 //
 //    var classWithRisks =
 //        RiskMetricCalculator.getNormalizedClassMetrics(metrics).stream()

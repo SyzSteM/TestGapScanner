@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import at.aau.model.ClassMetricType;
 import at.aau.model.MethodMetricType;
 import at.aau.model.MethodWithRisk;
 import at.aau.model.MetricMeasurement;
@@ -107,20 +108,29 @@ public final class RiskMetricCalculator {
         normalizedMetricsData.getMethodMetrics().stream()
             .collect(Collectors.toMap(MetricMeasurement::getType, MetricMeasurement::getValue));
 
+    double classRiskValue =
+        (0.3 * classMetricsNameToValueMap.get(ClassMetricType.REVS))
+            + (0.2 * classMetricsNameToValueMap.get(ClassMetricType.LOC))
+            + (0.2 * classMetricsNameToValueMap.get(ClassMetricType.NOM))
+            + (0.2 * classMetricsNameToValueMap.get(ClassMetricType.WMC))
+            + (0.1 * classMetricsNameToValueMap.get(ClassMetricType.CBO));
+
     double W1 = 0.3;
     double W2 = 0.2;
     double W3 = 0.2;
     double W4 = 0.2;
     double W5 = 0.1;
 
-    double riskValue =
+    double methodRiskValue =
         (W1 * methodMetricsNameToValueMap.get(MethodMetricType.WMC))
             + (W2 * methodMetricsNameToValueMap.get(MethodMetricType.CBO))
             + (W3 * methodMetricsNameToValueMap.get(MethodMetricType.RFC))
             + (W4 * methodMetricsNameToValueMap.get(MethodMetricType.FOUT))
             + (W5 * methodMetricsNameToValueMap.get(MethodMetricType.FIN));
 
-    return MethodWithRisk.of(normalizedMetricsData.getMethodDescriptor(), riskValue);
+    double weightedMethodRisk = (0.3 * classRiskValue) + (0.7 * methodRiskValue);
+
+    return MethodWithRisk.of(normalizedMetricsData.getMethodDescriptor(), weightedMethodRisk);
   }
 
 }

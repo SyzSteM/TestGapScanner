@@ -1,0 +1,10 @@
+entity,soc
+src/main/java/at/aau/testproject/TextDocument.java,3400
+src/main/java/at/aau/testproject/SpreadsheetDocument.java,2843
+src/main/java/at/aau/testproject/management/DocumentManager.java,2334
+src/main/java/at/aau/testproject/SimpleFormatter.java,1432
+src/main/java/at/aau/testproject/management/ReportGenerator.java,1300
+src/main/java/at/aau/testproject/Document.java,1200
+src/main/java/at/aau/testproject/ComplexFormatter.java,1
+src/main/java/at/aau/testproject/Formatter.java,1
+src/main/java/at/aau/testproject/Printer.java,1

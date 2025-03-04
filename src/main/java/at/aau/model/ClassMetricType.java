@@ -11,7 +11,9 @@ public enum ClassMetricType implements MetricType {
   NOC,
   NOM,
   CBO,
-  RFC;
+  RFC,
+  SOC,
+  REVS;
 
   @Override
   public String getName() {

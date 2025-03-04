@@ -1,0 +1,10 @@
+entity,n-revs
+src/main/java/at/aau/testproject/management/DocumentManager.java,40
+src/main/java/at/aau/testproject/management/ReportGenerator.java,34
+src/main/java/at/aau/testproject/TextDocument.java,22
+src/main/java/at/aau/testproject/SimpleFormatter.java,17
+src/main/java/at/aau/testproject/Document.java,12
+src/main/java/at/aau/testproject/SpreadsheetDocument.java,5
+src/main/java/at/aau/testproject/ComplexFormatter.java,1
+src/main/java/at/aau/testproject/Formatter.java,1
+src/main/java/at/aau/testproject/Printer.java,1

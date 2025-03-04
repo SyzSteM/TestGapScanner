@@ -5,8 +5,6 @@ import java.util.Objects;
 
 import com.google.common.base.MoreObjects;
 
-import at.aau.util.ListUtils;
-
 public class MetricsData {
 
   private final MethodDescriptor methodDescriptor;
@@ -19,8 +17,15 @@ public class MetricsData {
       List<MetricMeasurement> classMetrics
   ) {
     this.methodDescriptor = methodDescriptor;
-    this.methodMetrics = ListUtils.unmodifiableList(methodMetrics);
-    this.classMetrics = ListUtils.unmodifiableList(classMetrics);
+    this.methodMetrics = methodMetrics;
+    this.classMetrics = classMetrics;
+  }
+
+  public static MetricsData of(
+      String className,
+      List<MetricMeasurement> classMetrics
+  ) {
+    return of(className, null, null, null, classMetrics);
   }
 
   public static MetricsData of(
@@ -40,6 +45,14 @@ public class MetricsData {
       List<MetricMeasurement> classMetrics
   ) {
     return new MetricsData(methodDescriptor, methodMetrics, classMetrics);
+  }
+
+  public void addClassMetrics(List<MetricMeasurement> classMetrics) {
+    if (this.classMetrics == null) {
+      return;
+    }
+
+    this.classMetrics.addAll(classMetrics);
   }
 
   public String getClassName() {

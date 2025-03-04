@@ -27,7 +27,7 @@ public final class CkMetricCollector {
     throw new UnsupportedOperationException("Utility class");
   }
 
-  public static List<MetricsData> collectMetrics(Path path) {
+  public static List<MetricsData> collectCkMetrics(Path path) {
     if (!PathHelper.isValidDirectory(path)) {
       return Collections.emptyList();
     }
