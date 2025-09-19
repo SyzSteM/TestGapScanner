@@ -10,8 +10,10 @@ import org.junit.Test;
 
 public class ListUtilsTest {
 
-  void shouldReturnEmptyList_whenListIsNullOrEmpty(List<?> list) {
-    assertThat(ListUtils.unmodifiableList(list)).isEmpty();
+  @Test
+  public void shouldReturnEmptyList_whenListIsNullOrEmpty() {
+    assertThat(ListUtils.unmodifiableList(null)).isEmpty();
+    assertThat(ListUtils.unmodifiableList(new ArrayList<>())).isEmpty();
   }
 
   @Test
@@ -28,8 +30,10 @@ public class ListUtilsTest {
     assertThrows(UnsupportedOperationException.class, () -> numbers.add(2));
   }
 
-  void shouldReturnFalse_whenListIsNullOrEmpty(List<?> list) {
-    assertThat(ListUtils.notNullOrEmpty(list)).isFalse();
+  @Test
+  public void shouldReturnFalse_whenListIsNullOrEmpty() {
+    assertThat(ListUtils.notNullOrEmpty(null)).isFalse();
+    assertThat(ListUtils.notNullOrEmpty(new ArrayList<>())).isFalse();
   }
 
   @Test
