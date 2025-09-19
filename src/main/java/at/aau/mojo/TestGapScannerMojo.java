@@ -5,34 +5,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import at.aau.jacoco.JacocoCoverageCollector;
-import at.aau.jacoco.JacocoCoverageFilter;
 import at.aau.jacoco.model.Method;
-import at.aau.jacoco.model.Package;
-import at.aau.metrics.CkMetricCollector;
-import at.aau.metrics.MethodMatcher;
-import at.aau.metrics.MetricUtils;
-import at.aau.metrics.RiskMetricCalculator;
-import at.aau.model.ClassMetricType;
 import at.aau.model.MethodWithRisk;
-import at.aau.model.MetricsData;
+import at.aau.util.ScannerUtils;
 
 @Mojo(name = "test-gap-scanner")
 public class TestGapScannerMojo extends AbstractMojo {
-
-  private static final Logger log = LoggerFactory.getLogger(CkMetricCollector.class);
 
   @Parameter(defaultValue = "${project.build.directory}/site/jacoco/jacoco.xml")
   private String coverageReportPath;
@@ -49,12 +34,6 @@ public class TestGapScannerMojo extends AbstractMojo {
   @Parameter(defaultValue = "${session}", readonly = true, required = true)
   private MavenSession session;
 
-  private static List<Method> getUntestedMethods(Path coverageReport) throws Exception {
-    List<Package> metrics = JacocoCoverageCollector.collect(coverageReport);
-
-    return JacocoCoverageFilter.getUntestedMethods(metrics);
-  }
-
   @Override
   public void execute() {
     Path projectBaseDirPath = project.getBasedir().toPath();
@@ -64,28 +43,25 @@ public class TestGapScannerMojo extends AbstractMojo {
 
     if (Files.notExists(coverageReport)) {
       getLog().warn("Coverage report not found at " + coverageReportPath);
-
       return;
     }
 
     if (Files.notExists(maatRevisions)) {
       getLog().warn("Maat revisions report not found at " + maatRevisionsPath);
-
       return;
     }
 
     if (Files.notExists(maatSoc)) {
       getLog().warn("Maat SoC report not found at " + maatSocPath);
-
       return;
     }
 
     getLog().info("Valid reports found, processing...");
 
-    List<Method> uncoveredMethods;
+    List<Method> untestedMethods;
 
     try {
-      uncoveredMethods = getUntestedMethods(coverageReport);
+      untestedMethods = ScannerUtils.getUntestedMethods(coverageReport);
     } catch (Exception e) {
       getLog().error("Failed to parse coverage report; abort", e);
       return;
@@ -93,30 +69,11 @@ public class TestGapScannerMojo extends AbstractMojo {
 
     getLog().info("Calculating risk scores for untested classes...");
 
-    List<MetricsData> methodMetricsData = CkMetricCollector.collectCkMetrics(projectBaseDirPath);
-    List<MetricsData> untestedMethodsMetricsData =
-        MetricUtils.getUntestedMethodMetrics(uncoveredMethods, methodMetricsData);
+    List<MethodWithRisk> descendingMethodRiskScores = ScannerUtils.calculateMethodRiskScores(
+        projectBaseDirPath, untestedMethods, maatRevisions, maatSoc
+    );
 
-    List<MetricsData> metricsData = MethodMatcher.methodDescriptorFromMaat(maatRevisions, ClassMetricType.REVS);
-
-    Map<String, List<MetricsData>> classNameToMetricsDataMap = untestedMethodsMetricsData.stream()
-        .collect(Collectors.groupingBy(MetricsData::getClassName, Collectors.toList()));
-
-    for (MetricsData metricData : metricsData) {
-      List<MetricsData> mapEntries = classNameToMetricsDataMap.get(metricData.getClassName());
-
-      if (CollectionUtils.isNotEmpty(mapEntries)) {
-        MetricsData firstEntry = mapEntries.get(0);
-
-        firstEntry.addClassMetrics(metricData.getClassMetrics());
-      }
-    }
-
-    List<MetricsData> normalizedMetricsData = RiskMetricCalculator.normalizeMetricsData(untestedMethodsMetricsData);
-    List<MethodWithRisk> descendingMethodRiskScores =
-        RiskMetricCalculator.getDescendingMethodRiskScores(normalizedMetricsData);
-
-    StringBuilder outputBuilder = new StringBuilder();
+    StringBuilder outputBuilder = new StringBuilder().append("\n");
     Path outputFilePath = Path.of(project.getBuild().getDirectory()).resolve("test-gap-report.txt");
 
     for (int i = 0; i < descendingMethodRiskScores.size(); i++) {
@@ -139,11 +96,11 @@ public class TestGapScannerMojo extends AbstractMojo {
 
   private void writeToFile(Path filePath, String content) {
     try {
-      log.info("Writing report to file: '{}'", filePath);
+      getLog().info(String.format("Writing report to file: '%s'", filePath));
 
       Files.writeString(filePath, content, StandardCharsets.UTF_8);
     } catch (IOException e) {
-      getLog().error("Error writing content to file; abort - [filePath='{}']" + filePath, e);
+      getLog().error(String.format("Error writing content to file; abort - [filePath='%s']", filePath), e);
     }
   }
 

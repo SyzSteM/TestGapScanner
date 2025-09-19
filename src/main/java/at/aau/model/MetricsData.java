@@ -106,8 +106,6 @@ public class MetricsData {
   public String toString() {
     return MoreObjects.toStringHelper(this)
         .add("methodDescriptor", methodDescriptor)
-        .add("methodMetrics", methodMetrics)
-        .add("classMetrics", classMetrics)
         .toString();
   }
 

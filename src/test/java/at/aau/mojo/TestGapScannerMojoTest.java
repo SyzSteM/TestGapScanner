@@ -24,7 +24,6 @@ public class TestGapScannerMojoTest {
 
     maven.executeMojo(baseDir, "test-gap-scanner");
 
-    //    assertFileContents("", baseDir, "target/test-gap-report.txt");
     assertFilesPresent(baseDir, "target/site/jacoco/jacoco.xml", "target/test-gap-report.txt");
   }
 
